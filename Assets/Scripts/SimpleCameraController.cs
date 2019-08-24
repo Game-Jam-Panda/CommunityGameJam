@@ -15,6 +15,7 @@ namespace UnityTemplateProjects
             public float testFloat;
             public float daigan;
             public float pandaFloat;
+            public float pandaFloat2;
 
             public void SetFromTransform(Transform t)
             {
