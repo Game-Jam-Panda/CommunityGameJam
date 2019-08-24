@@ -12,6 +12,7 @@ namespace UnityTemplateProjects
             public float x;
             public float y;
             public float z;
+            public float daigan;
 
             public void SetFromTransform(Transform t)
             {
