@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 8446658304591325088, guid: 4b65f63d78612fd48a9eb733573b4bd2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8446658304591325088, guid: 4b65f63d78612fd48a9eb733573b4bd2,
         type: 3}
@@ -261,6 +261,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1431733779523744558, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: groundedCheckSource
+      value: 
+      objectReference: {fileID: 385799860140178206}
     - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
         type: 3}
       propertyPath: hearts.Array.data[0]

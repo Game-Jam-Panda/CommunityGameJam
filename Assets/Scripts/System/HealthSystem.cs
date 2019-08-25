@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CGJ.System;
 using UnityEngine.UI;
 
-public class HealthSystem : MonoBehaviour, ISystems
+public class HealthSystem : MonoBehaviour
 {
     [Header("Health UI")]
     [SerializeField] Image[] hearts;
@@ -15,6 +15,20 @@ public class HealthSystem : MonoBehaviour, ISystems
     [SerializeField] int maxHearts = 3;
     [SerializeField] int currentHealth = 1;
 
+    public event Action onHealthChange;
+
+    // Delegate Subscription
+    void OnEnable()
+    { onHealthChange += UpdateHealthUI; }
+    void OnDisable()
+    { onHealthChange -= UpdateHealthUI; }
+
+    void Start()
+    {
+        // Setup health on start
+        onHealthChange();
+    }
+
     void Update()
     {
         //Make sure the current health doesn't exceed max hearts
@@ -23,7 +37,7 @@ public class HealthSystem : MonoBehaviour, ISystems
            currentHealth = maxHearts;
         }
 
-        UpdateHealthUI();
+        DamageTesting();
     }
 
     void UpdateHealthUI()
@@ -36,11 +50,40 @@ public class HealthSystem : MonoBehaviour, ISystems
             else
             { hearts[i].sprite = emptyHeart; }
 
-            // Update Hearts number
+            // Update total Hearts number
             if(i < maxHearts)
             { hearts[i].enabled = true; }
             else
             { hearts[i].enabled = false; }
+        }
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
+        currentHealth = newHealth;
+        onHealthChange();
+    }
+    public void Heal(int healAmount)
+    {
+        int newHealth = Mathf.Clamp(currentHealth + healAmount, currentHealth, maxHearts);
+        currentHealth = newHealth;
+        onHealthChange();
+    }
+
+    void DamageTesting()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            TakeDamage(1);
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Heal(1);
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            TakeDamage(maxHearts);
         }
     }
 }

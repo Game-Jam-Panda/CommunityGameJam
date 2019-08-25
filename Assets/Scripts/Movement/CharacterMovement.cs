@@ -12,10 +12,12 @@ namespace CGJ.Movement
         [SerializeField] float allowMovementTreshhold = 0.0f;
 
         [Header("Jump settings")]
-        [SerializeField] LayerMask groundedLayers;
         [SerializeField] float jumpForce = 5.0f;
-        [SerializeField] float groundedRadiusMultiplier = 0.2f;
-        bool grounded = true;
+        [SerializeField] LayerMask groundedLayers;
+        [SerializeField] Transform groundedCheckSource = null;
+        [SerializeField] float groundedCheckDistance = 0.1f;
+        [SerializeField] bool grounded = true;  //TODO Remove exposure
+        //[SerializeField] float groundedRadiusMultiplier = 0.2f;
 
         //Input
         float InputX = 0.0f;
@@ -90,10 +92,10 @@ namespace CGJ.Movement
             
             //Direction to move
             movementDirection = charForward * InputZ + charRight * InputX;
-            movement = movementDirection * moveSpeed * Time.deltaTime;
+            movement = movementDirection * moveSpeed;
             
             //Physically move the character
-            transform.Translate(movement);
+            transform.Translate(movement * Time.deltaTime);
         }
 
         private void FreezeRigidbodyZMovement()
@@ -109,18 +111,36 @@ namespace CGJ.Movement
 #region Jump
         void ProcessJump()
         {
-            grounded = IsGrounded();
+            // Grounded check
+            grounded = Physics.Raycast(transform.position, Vector3.down, groundedCheckDistance, groundedLayers);
 
             if(grounded && Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                // Prevent from jumping multiple times
+                if(rb.velocity.y < jumpForce)
+                {
+                    Jump();
+                }
             }
         }
 
-        private bool IsGrounded()
+        void Jump()
         {
-            //TODO Remove magic 0.9f number
-            return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z), col.radius * groundedRadiusMultiplier, groundedLayers);
+            // Physically make the player jump
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            grounded = false;
+        }
+#endregion
+
+#region GIZMOS
+
+        // Debug Gizmos to see grounded distance
+        void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position,
+                new Vector3(transform.position.x, transform.position.y - groundedCheckDistance, transform.position.z)
+            );
         }
 #endregion
     }
