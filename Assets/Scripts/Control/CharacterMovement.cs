@@ -11,6 +11,12 @@ namespace CGJ.Movement
         [SerializeField] float moveSpeed = 6.0f;
         [SerializeField] float allowMovementTreshhold = 0.0f;
 
+        [Header("Jump settings")]
+        [SerializeField] LayerMask groundedLayers;
+        [SerializeField] float jumpForce = 5.0f;
+        [SerializeField] bool grounded = true; //TODO remove exposure
+        [SerializeField] float groundedRadiusMultiplier = 0.2f;
+
         //Input
         float InputX = 0.0f;
         float InputZ = 0.0f;
@@ -20,23 +26,43 @@ namespace CGJ.Movement
         Vector3 movementDirection;
         Vector3 movement;
 
+        //References
+        Rigidbody rb;
+        CapsuleCollider col;
+
+        void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+            col = GetComponent<CapsuleCollider>();
+        }
+
         void Update()
         {
-            ProcessInput();
+            ProcessMovementInput();
+            ProcessJump();
         }
         void FixedUpdate()
         {
             ProcessMovement();
         }
 
-        void ProcessInput()
+#region Movement
+        void ProcessMovementInput()
         {
             // Left and right movement
             InputX = Input.GetAxis("Horizontal");
             
             // Depth movement
-            if(lockVerticalMovement) { InputZ = 0.0f; return; }
-            InputZ = Input.GetAxis("Vertical");
+            if(lockVerticalMovement)
+            {
+                InputZ = 0.0f;
+                FreezeRigidbodyZMovement();
+            }
+            else
+            {
+                InputZ = Input.GetAxis("Vertical");
+                AllowRigidbodyZMovement();
+            }
         }
 
         void ProcessMovement()
@@ -51,8 +77,8 @@ namespace CGJ.Movement
                 Move();
             }
         }
-
-        void Move()
+        
+        private void Move()
         {
             Vector3 charForward = transform.forward;
             Vector3 charRight = transform.right;
@@ -69,6 +95,33 @@ namespace CGJ.Movement
             //Physically move the character
             transform.Translate(movement);
         }
-    }
 
+        private void FreezeRigidbodyZMovement()
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
+        private void AllowRigidbodyZMovement()
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+#endregion
+
+#region Jump
+        void ProcessJump()
+        {
+            grounded = IsGrounded();
+
+            if(grounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        }
+
+        private bool IsGrounded()
+        {
+            //TODO Remove magic 0.9f number
+            return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z), col.radius * groundedRadiusMultiplier, groundedLayers);
+        }
+#endregion
+    }
 }
