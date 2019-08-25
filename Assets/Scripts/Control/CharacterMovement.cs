@@ -14,8 +14,8 @@ namespace CGJ.Movement
         [Header("Jump settings")]
         [SerializeField] LayerMask groundedLayers;
         [SerializeField] float jumpForce = 5.0f;
-        [SerializeField] bool grounded = true; //TODO remove exposure
         [SerializeField] float groundedRadiusMultiplier = 0.2f;
+        bool grounded = true;
 
         //Input
         float InputX = 0.0f;
