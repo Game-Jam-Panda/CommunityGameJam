@@ -10,7 +10,7 @@ namespace CGJ.Camera
         [SerializeField] GameObject target = null;
 
         [Header("Camera Movement")]
-        [SerializeField] float followSpeed = 5.0f;
+        [SerializeField] float followSpeed = 10.0f;
 
         [Header("Camera Positioning")]
         [SerializeField] float ZOffset = 10.0f;
@@ -25,11 +25,11 @@ namespace CGJ.Camera
             if(target == null) { return; }
             
             // TP the camera to the starting position
-            Vector3 startPosition = new Vector3(target.transform.position.x, heightOffset, -ZOffset);
+            Vector3 startPosition = new Vector3(target.transform.position.x, target.transform.position.y + heightOffset, -ZOffset);
             transform.position = startPosition;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if(target == null) { return; }
 
@@ -42,8 +42,8 @@ namespace CGJ.Camera
             Vector3 targetPos = target.transform.position;
 
             camPosX = targetPos.x;
-            camPosY = heightOffset;      // Height offset
-            camPosZ = -ZOffset;          // Side-view offset
+            camPosY = targetPos.y + heightOffset;      // Camera height relative to the target
+            camPosZ = -ZOffset;                   // Side-view offset
 
             Vector3 newPosition = new Vector3(camPosX, camPosY, camPosZ);
 

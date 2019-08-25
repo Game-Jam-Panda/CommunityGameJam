@@ -8,7 +8,7 @@ namespace CGJ.Movement
     {
         [Header("Movement settings")]
         [SerializeField] bool lockVerticalMovement = true;
-        [SerializeField] float moveSpeed = 5.0f;
+        [SerializeField] float moveSpeed = 6.0f;
         [SerializeField] float allowMovementTreshhold = 0.0f;
 
         //Input
@@ -23,6 +23,9 @@ namespace CGJ.Movement
         void Update()
         {
             ProcessInput();
+        }
+        void FixedUpdate()
+        {
             ProcessMovement();
         }
 

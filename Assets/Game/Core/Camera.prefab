@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followSpeed: 5
-  ZOffset: 10
+  followSpeed: 10
+  ZOffset: 9.7
   heightOffset: 2
