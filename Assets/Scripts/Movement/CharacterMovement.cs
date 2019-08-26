@@ -184,6 +184,8 @@ namespace CGJ.Movement
 
             // Physically make the player jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            GetComponent<AudioSource>().clip = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)];
+            GetComponent<AudioSource>().Play();
             grounded = false;
         }
 #endregion
