@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CGJ.Camera
+namespace CGJ.Cameras
 {
     public class CameraFollow : MonoBehaviour
     {

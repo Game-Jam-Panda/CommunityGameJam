@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,13 @@ namespace CGJ.Movement
     public class CharacterMovement : MonoBehaviour
     {
         [Header("Movement settings")]
-        [SerializeField] bool lockVerticalMovement = true;
+        [SerializeField] bool lockVerticalMovement = true;  //TODO Remove exposure
+        [SerializeField] bool blockMovement = false;
         [SerializeField] float moveSpeed = 6.0f;
         [SerializeField] float allowMovementTreshhold = 0.0f;
+        [Header("Rotation settings")]
+        [SerializeField] bool blockRotation = false;    //TODO Remove exposure
+        [SerializeField] float rotationSpeed = 10.0f;
 
         [Header("Jump settings")]
         [SerializeField] float jumpForce = 5.0f;
@@ -26,20 +31,28 @@ namespace CGJ.Movement
         float InputX = 0.0f;
         float InputZ = 0.0f;
         float inputMagnitude;
+        float inputMagnitudeClamped;
 
         //Movement
         Vector3 movementDirection;
         Vector3 movement;
         bool zMovementFrozen = true;
 
+        //Rotation
+        Vector3 camLookAtRotation;
+
         //References
         Rigidbody rb;
         CapsuleCollider col;
+        Camera cam;
+
+        public Rigidbody GetRigidbody() { return rb; }
 
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             col = GetComponent<CapsuleCollider>();
+            cam = Camera.main;
         }
 
         void Update()
@@ -51,6 +64,20 @@ namespace CGJ.Movement
         {
             ProcessMovement();
         }
+        
+#region Knockback
+        // Knockback
+        public void Knockback(float freezeTime, float knockbackForce, Vector3 contactPointNormal)
+        {
+            //Freeze movement
+            StartCoroutine(FreezeMovementForTime(freezeTime));
+
+            //Knockback
+            var knockbackDirection = (contactPointNormal - transform.forward);
+            var knockback = knockbackDirection * knockbackForce;
+            rb.AddForce(knockback, ForceMode.Impulse);
+        }
+#endregion
 
 #region Movement
         void ProcessMovementInput()
@@ -61,13 +88,13 @@ namespace CGJ.Movement
             // Depth movement
             if(lockVerticalMovement)
             {
-                FreezeRigidbodyZMovement();
                 InputZ = 0.0f;
+                FreezeRigidbodyZMovement();
             }
             else
             {
-                AllowRigidbodyZMovement();
                 InputZ = Input.GetAxis("Vertical");
+                AllowRigidbodyZMovement();
             }
         }
 
@@ -75,44 +102,63 @@ namespace CGJ.Movement
         {
             // Get input magnitude
             inputMagnitude = new Vector2(InputX, InputZ).sqrMagnitude;
-            var inputMagnitudeClamped = Mathf.Clamp01(inputMagnitude);
+            inputMagnitudeClamped = Mathf.Clamp01(inputMagnitude);
 
             // Move if the magnitude has reached the allowed movement treshhold
             if (inputMagnitudeClamped > allowMovementTreshhold)
             {
-                Move();
+                RotateAndMove();
             }
         }
         
-        private void Move()
+        private void RotateAndMove()
         {
-            Vector3 charForward = transform.forward;
-            Vector3 charRight = transform.right;
+            var worldForward = Vector3.forward;
+            var worldRight = Vector3.right;
+            worldForward.y = 0.0f;
+            worldRight.y = 0.0f;
+            worldForward.Normalize();
+            worldRight.Normalize();
 
-            charForward.y = 0.0f;
-            charRight.y = 0.0f;
-            charForward.Normalize();
-            charRight.Normalize();
-            
             //Direction to move
-            movementDirection = charForward * InputZ + charRight * InputX;
-            movement = movementDirection * moveSpeed;
-            
-            //Physically move the character
-            transform.Translate(movement * Time.deltaTime);
+            movementDirection = worldForward * InputZ + worldRight * InputX;
+            //Forward Movement vector (always facing forward with the camera taking care of rotating)
+            movement = worldForward * inputMagnitudeClamped * moveSpeed;
+
+            //Physically Rotate the player
+            if(blockRotation == false)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementDirection), rotationSpeed * Time.deltaTime);
+            }
+            //Physically Move the character
+            if(blockMovement == false)
+            {
+                transform.Translate(movement * Time.deltaTime);
+            }
         }
 
         private void FreezeRigidbodyZMovement()
         {
-            if(!zMovementFrozen) { return; }
+            if(zMovementFrozen) { return; }
             rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             zMovementFrozen = true;
         }
         private void AllowRigidbodyZMovement()
         {
-            if(zMovementFrozen) { return; }
+            if(!zMovementFrozen) { return; }
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             zMovementFrozen = false;
+        }
+
+        IEnumerator FreezeMovementForTime(float time)
+        {
+            //Freeze
+            rb.velocity.Set(0.0f, 0.0f, 0.0f);
+            //Block physical movement
+            blockMovement = true;
+            //Reset after freeze time
+            yield return new WaitForSeconds(time);
+            blockMovement = false;
         }
 #endregion
 
@@ -139,6 +185,14 @@ namespace CGJ.Movement
             // Physically make the player jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             grounded = false;
+        }
+#endregion
+
+#region Public Utils
+        public Vector3 GetColliderCenterPosition()
+        {
+            float colHalfHeight = (col.height / 2.0f);
+            return new Vector3(transform.position.x, colHalfHeight, transform.position.z);
         }
 #endregion
 

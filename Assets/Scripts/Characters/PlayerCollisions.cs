@@ -3,71 +3,92 @@ using System.Collections.Generic;
 using UnityEngine;
 using CGJ.Traps;
 using CGJ.System;
+using CGJ.Movement;
 
 namespace CGJ.Characters
 {
     public class PlayerCollisions : MonoBehaviour
     {
+        [SerializeField] bool debug = false;    //TODO Remove variable
+        [SerializeField] LayerMask triggerLayers;
+
         HealthSystem playerHealth = null;
+        CharacterMovement playerMovement = null;
 
         void Awake()
         {
             playerHealth = GetComponent<HealthSystem>();
+            playerMovement = GetComponent<CharacterMovement>();
         }
 
-        private void OnCollisionEnter(Collision col)
+        private void OnTriggerEnter(Collider col)
         {
-            // Trap collisions
-            if(col.gameObject.GetComponent<Trap>())
+            //direction towards the col
+            Vector3 toCollider = (col.transform.position - playerMovement.GetColliderCenterPosition()).normalized;
+            //Vector3.
+            RaycastHit hit;
+            if (Physics.Raycast(playerMovement.GetColliderCenterPosition(), toCollider, out hit))
             {
-                TrapConfig trapConfig = col.gameObject.GetComponent<Trap>().GetTrapConfig();
-                TrapTypes trapType = trapConfig.GetTrapType();
-                Debug.Log("Collided with trap of type: " + trapType.ToString());
+                if(debug) { Debug.DrawRay(playerMovement.GetColliderCenterPosition(), toCollider, Color.blue, 1.0f); }
 
-                //-Collision effect-//
-                SpawnTrapCollisionParticleByContact(col, trapConfig);
+                Vector3 contactPoint = hit.point;
+                Vector3 contactPointNormal = hit.normal;
 
-                //--TRAPS DAMAGE LOGIC--// Depending on the trap, use a damage logic specific for that type of trap
-                switch (trapType)
+                // Trap collisions
+                if(col.gameObject.GetComponent<Trap>())
                 {
-                    #region VOID
-                    case TrapTypes.Void:
+                    // Get trap infos
+                    TrapConfig trapConfig = col.gameObject.GetComponent<Trap>().GetTrapConfig();
+                    TrapTypes trapType = trapConfig.GetTrapType();
 
-                        // Instant kill or one-time damage
-                        if((trapConfig as VoidTrapConfig).IsInstantKill())
-                        {
-                            playerHealth.TakeDamage(playerHealth.GetCurrentHealth());
-                        }
-                        else
-                        {
-                            playerHealth.TakeDamage(trapConfig.GetTrapDamage());
-                        }
-                        
-                        break;
-                    #endregion
+                    //***WIP Knockback***//
+                    //Freeze playermovement for a time && Push the player on the opposite side
+                    if(trapConfig.IsKockbackEnabled())
+                    { playerMovement.Knockback(trapConfig.GetHitKnockbackTime(), trapConfig.GetHitKnockbackForce(), contactPointNormal); }
 
-                    #region FIRE
-                    case TrapTypes.Fire:
+                    //***Collision effect***//
+                    SpawnTrapCollisionParticleByContact(contactPoint, contactPointNormal, trapConfig);
 
-                        break;
-                    #endregion
+                    //***TRAPS DAMAGE LOGIC***// Depending on the trap, use a damage logic specific for that type of trap
+                    switch (trapType)
+                    {
+                        #region VOID
+                        case TrapTypes.Void:
 
-                    #region SPIKES
-                    case TrapTypes.Spikes:
+                            // Instant kill or one-time damage
+                            if((trapConfig as VoidTrapConfig).IsInstantKill())
+                            {
+                                playerHealth.TakeDamage(playerHealth.GetCurrentHealth());
+                            }
+                            else
+                            {
+                                playerHealth.TakeDamage(trapConfig.GetTrapDamage());
+                            }
 
-                        break;
-                    #endregion
-                    default:
-                        break;
+                            break;
+                        #endregion
+
+                        #region FIRE
+                        case TrapTypes.Fire:
+
+                            break;
+                        #endregion
+
+                        #region SPIKES
+                        case TrapTypes.Spikes:
+
+                            break;
+                        #endregion
+                        default:
+                            break;
+                    }
                 }
             }
         }
 
-        void SpawnTrapCollisionParticleByContact(Collision col, TrapConfig trapConfig)
+        void SpawnTrapCollisionParticleByContact(Vector3 contactPoint, Vector3 contactPointNormal, TrapConfig trapConfig)
         {
-            ContactPoint contact = col.contacts[0];
-            
-            trapConfig.SpawnContact(trapConfig.GetCollisionParticle(), contact);
+            trapConfig.SpawnAtContact(trapConfig.GetCollisionParticle(), contactPoint, contactPointNormal);
         }
     }
 }

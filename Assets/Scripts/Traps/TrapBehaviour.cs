@@ -10,18 +10,12 @@ namespace CGJ.Traps
         protected TrapConfig config;
         public void SetConfig(TrapConfig trapConfig) { config = trapConfig; }
 
-        // Process Trap Behaviour
-        private void Update()
-        {
-           ProcessTrapBehaviour();
-        }
-        public abstract void ProcessTrapBehaviour();
-        public abstract void TriggerCollisionBehaviour(ContactPoint contact);
+        public abstract void TriggerCollisionBehaviour(Vector3 contactPoint, Vector3 contactNormal);
 
-        protected void SpawnParticleAtContactPoint(GameObject particlePrefab, ContactPoint contact)
+        protected void SpawnParticleAtContactPoint(GameObject particlePrefab, Vector3 contactPoint, Vector3 contactNormal)
         {
-            Vector3 pos = contact.point;
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 pos = contactPoint;
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contactNormal);
             Instantiate(particlePrefab, pos, rot);
         }
     }

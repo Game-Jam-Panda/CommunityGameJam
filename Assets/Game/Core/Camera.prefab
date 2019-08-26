@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1156504243}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followSpeed: 10
+  followSpeed: 20
   ZOffset: 10.37
   heightOffset: 5.47
 --- !u!114 &1156504243

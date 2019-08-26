@@ -6,14 +6,25 @@ namespace CGJ.Traps
 {
     public abstract class TrapConfig : ScriptableObject
     {
-        [Header("General Trap Settings")]
+        [Header("General - Trap settings")]
         [SerializeField] TrapTypes trapType;
+        [Header("General - Collision settings")]
         [SerializeField] int damage;
         [SerializeField] GameObject collisionParticle;
+        [Header("General - Knockback settings")]
+        [SerializeField] bool knockbackEnabled = false;
+        [SerializeField] float hitKnockbackTime = 0.3f;
+        [SerializeField] float hitKnockbackForce = 2.0f;
 
+        //Trap settings
         public TrapTypes GetTrapType() { return trapType; }
+        //Collision
         public int GetTrapDamage() { return damage; }
         public GameObject GetCollisionParticle() { return collisionParticle; }
+        //Knockback
+        public bool IsKockbackEnabled() { return knockbackEnabled; }
+        public float GetHitKnockbackTime() { return hitKnockbackTime; }
+        public float GetHitKnockbackForce() { return hitKnockbackForce; }
 
         // Get Behaviour
         protected TrapBehaviour behaviour;
@@ -33,9 +44,9 @@ namespace CGJ.Traps
         {}
 
         //For Spawning at the point of collision
-        public void SpawnContact(GameObject objectToSpawn, ContactPoint contactPoint)
+        public void SpawnAtContact(GameObject objectToSpawn, Vector3 contactPoint, Vector3 contactNormal)
         {
-            behaviour.TriggerCollisionBehaviour(contactPoint);
+            behaviour.TriggerCollisionBehaviour(contactPoint, contactNormal);
         }
     }
 

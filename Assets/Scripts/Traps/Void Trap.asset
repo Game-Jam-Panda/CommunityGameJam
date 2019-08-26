@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Void Trap
   m_EditorClassIdentifier: 
   trapType: 0
-  damage: 0
+  damage: 1
   collisionParticle: {fileID: 1591823490678448535, guid: 0ad742cd4eba33343ac9a25ffc3e808a,
     type: 3}
+  knockbackEnabled: 1
+  hitKnockbackTime: 0.3
+  hitKnockbackForce: 2
   instantKill: 1
