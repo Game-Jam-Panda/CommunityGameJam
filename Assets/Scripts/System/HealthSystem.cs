@@ -16,6 +16,8 @@ namespace CGJ.System
         //TODO Remove exposure
         [SerializeField] int maxHearts = 3;
         [SerializeField] int currentHealth = 1;
+
+        [SerializeField] AudioClip[] damageSFXArray;
     
         public event Action onHealthChange;
     
@@ -67,6 +69,8 @@ namespace CGJ.System
         {
             int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
             currentHealth = newHealth;
+            GetComponent<AudioSource>().clip = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
+            GetComponent<AudioSource>().Play();
             onHealthChange();
         }
         public void Heal(int healAmount)
