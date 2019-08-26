@@ -203,85 +203,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1154752019
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3494500720358385840, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_Name
-      value: volumetric fog
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.698633
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0014315292
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385841, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385843, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 11.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494500720358385843, guid: fe9d143a4e2e2214297dad8b6fdfbc77,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 6.02
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fe9d143a4e2e2214297dad8b6fdfbc77, type: 3}
 --- !u!1 &1890040550
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +292,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &5730940180626201914
 PrefabInstance:
@@ -423,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
@@ -492,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 1426663130322008099, guid: 55f0c34a39c114a44b63a06c0e7634ac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1426663130322008099, guid: 55f0c34a39c114a44b63a06c0e7634ac,
         type: 3}
