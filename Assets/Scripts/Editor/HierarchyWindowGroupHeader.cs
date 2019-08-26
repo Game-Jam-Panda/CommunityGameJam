@@ -3,11 +3,10 @@ using UnityEditor;
 
 /// <summary>
 /// Hierarchy Window Group Header
-//
 //This script allows us to create headers in the editor hierarchy by creating an empty gameobject with a name starting with "---"
-//
 /// Source: http://diegogiacomelli.com.br/unitytips-hierarchy-window-group-header
 /// </summary>
+
 [InitializeOnLoad]
 public static class HierarchyWindowGroupHeader
 {
@@ -15,11 +14,9 @@ public static class HierarchyWindowGroupHeader
     {
         EditorApplication.hierarchyWindowItemOnGUI += HierarchyWindowItemOnGUI;
     }
-
     static void HierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
     {
         var gameObject = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-
         if (gameObject != null && gameObject.name.StartsWith("---", System.StringComparison.Ordinal))
         {
             EditorGUI.DrawRect(selectionRect, Color.gray);

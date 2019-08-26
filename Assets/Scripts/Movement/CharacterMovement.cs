@@ -14,6 +14,9 @@ namespace CGJ.Movement
         [Header("Jump settings")]
         [SerializeField] float jumpForce = 5.0f;
         [SerializeField] GameObject jumpDustParticle = null;
+        [SerializeField] AudioClip[] jumpSounds;
+
+        [Header("Grounded settings")]
         [SerializeField] LayerMask groundedLayers;
         [SerializeField] Transform groundedCheckSource = null;
         [SerializeField] float groundedCheckDistance = 0.1f;

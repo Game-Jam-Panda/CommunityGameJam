@@ -1,3 +1,4 @@
+using CGJ.Utils;
 using UnityEngine;
 
 namespace CGJ.Traps
@@ -7,7 +8,8 @@ namespace CGJ.Traps
     {
         [Header("Void Trap Settings")]
         [SerializeField] bool instantKill = true;
-
+        
+        //Trap settings
         public bool IsInstantKill() { return instantKill; }
 
         public override TrapBehaviour AttachAndGetTrapBehaviour(GameObject trapToAttachOn)
