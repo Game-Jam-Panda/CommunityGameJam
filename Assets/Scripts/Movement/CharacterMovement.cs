@@ -13,12 +13,12 @@ namespace CGJ.Movement
 
         [Header("Jump settings")]
         [SerializeField] float jumpForce = 5.0f;
+        [SerializeField] GameObject jumpDustParticle = null;
         [SerializeField] LayerMask groundedLayers;
         [SerializeField] Transform groundedCheckSource = null;
         [SerializeField] float groundedCheckDistance = 0.1f;
         [SerializeField] bool grounded = true;  //TODO Remove exposure
-        //[SerializeField] float groundedRadiusMultiplier = 0.2f;
-
+        
         //Input
         float InputX = 0.0f;
         float InputZ = 0.0f;
@@ -27,6 +27,7 @@ namespace CGJ.Movement
         //Movement
         Vector3 movementDirection;
         Vector3 movement;
+        bool zMovementFrozen = true;
 
         //References
         Rigidbody rb;
@@ -57,13 +58,13 @@ namespace CGJ.Movement
             // Depth movement
             if(lockVerticalMovement)
             {
-                InputZ = 0.0f;
                 FreezeRigidbodyZMovement();
+                InputZ = 0.0f;
             }
             else
             {
-                InputZ = Input.GetAxis("Vertical");
                 AllowRigidbodyZMovement();
+                InputZ = Input.GetAxis("Vertical");
             }
         }
 
@@ -100,11 +101,15 @@ namespace CGJ.Movement
 
         private void FreezeRigidbodyZMovement()
         {
+            if(!zMovementFrozen) { return; }
             rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            zMovementFrozen = true;
         }
         private void AllowRigidbodyZMovement()
         {
+            if(zMovementFrozen) { return; }
             rb.constraints = RigidbodyConstraints.FreezeRotation;
+            zMovementFrozen = false;
         }
 #endregion
 
@@ -112,20 +117,22 @@ namespace CGJ.Movement
         void ProcessJump()
         {
             // Grounded check
-            grounded = Physics.Raycast(transform.position, Vector3.down, groundedCheckDistance, groundedLayers);
+            grounded = Physics.Raycast(groundedCheckSource.position, Vector3.down, groundedCheckDistance, groundedLayers);
 
             if(grounded && Input.GetKeyDown(KeyCode.Space))
             {
                 // Prevent from jumping multiple times
-                if(rb.velocity.y < jumpForce)
-                {
-                    Jump();
-                }
+                if(rb.velocity.y > 0) { return; }
+                
+                Jump();
             }
         }
 
         void Jump()
         {
+            // Spawn jump dust particle
+            if (jumpDustParticle != null) { Instantiate(jumpDustParticle, transform.position, Quaternion.identity); }
+
             // Physically make the player jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             grounded = false;
@@ -138,8 +145,8 @@ namespace CGJ.Movement
         void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position,
-                new Vector3(transform.position.x, transform.position.y - groundedCheckDistance, transform.position.z)
+            Gizmos.DrawLine(groundedCheckSource.position,
+                new Vector3(groundedCheckSource.position.x, groundedCheckSource.position.y - groundedCheckDistance, groundedCheckSource.position.z)
             );
         }
 #endregion
