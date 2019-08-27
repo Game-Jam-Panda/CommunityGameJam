@@ -70,7 +70,7 @@ namespace CGJ.System
             int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
             currentHealth = newHealth;
             GetComponent<AudioSource>().clip = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
-            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
             onHealthChange();
         }
         public void Heal(int healAmount)

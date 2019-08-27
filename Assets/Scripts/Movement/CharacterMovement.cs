@@ -235,7 +235,7 @@ namespace CGJ.Movement
             
             //Jump Sound effect
             GetComponent<AudioSource>().clip = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)];
-            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
         }
 #endregion
 
