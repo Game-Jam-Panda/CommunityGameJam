@@ -14,7 +14,8 @@ namespace CGJ.Traps
         [Header("General - Knockback settings")]
         [SerializeField] bool knockbackEnabled = false;
         [SerializeField] float hitKnockbackTime = 0.3f;
-        [SerializeField] float hitKnockbackForce = 2.0f;
+        [SerializeField] float knockbackForceX = 2.0f;
+        [SerializeField] float knockbackForceY = 2.0f;
 
         //Trap settings
         public TrapTypes GetTrapType() { return trapType; }
@@ -24,7 +25,8 @@ namespace CGJ.Traps
         //Knockback
         public bool IsKockbackEnabled() { return knockbackEnabled; }
         public float GetHitKnockbackTime() { return hitKnockbackTime; }
-        public float GetHitKnockbackForce() { return hitKnockbackForce; }
+        public float GetKnockbackForceX() { return knockbackForceX; }
+        public float GetKnockbackForceY() { return knockbackForceY; }
 
         // Get Behaviour
         protected TrapBehaviour behaviour;

@@ -6,6 +6,9 @@ namespace CGJ.Traps
 {
     public class VoidTrapBehaviour : TrapBehaviour
     {
+        public override void ProcessTrapBehaviour()
+        {}
+
         public override void TriggerCollisionBehaviour(Vector3 contactPoint, Vector3 contactNormal)
         {
             Debug.Log("Triggered Void Trap Collision");

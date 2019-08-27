@@ -10,6 +10,12 @@ namespace CGJ.Traps
         protected TrapConfig config;
         public void SetConfig(TrapConfig trapConfig) { config = trapConfig; }
 
+        void Update()
+        {
+            ProcessTrapBehaviour();
+        }
+
+        public abstract void ProcessTrapBehaviour();
         public abstract void TriggerCollisionBehaviour(Vector3 contactPoint, Vector3 contactNormal);
 
         protected void SpawnParticleAtContactPoint(GameObject particlePrefab, Vector3 contactPoint, Vector3 contactNormal)
