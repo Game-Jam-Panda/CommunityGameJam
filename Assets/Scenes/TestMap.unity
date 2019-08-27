@@ -810,20 +810,5 @@ PrefabInstance:
       propertyPath: fallSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7186802025470406544, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
-        type: 3}
-      propertyPath: gravityMultiplier
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186802025470406544, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
-        type: 3}
-      propertyPath: jumpForce
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186802025470406544, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
-        type: 3}
-      propertyPath: fallingSpeedLimit
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e29dd026a7e6b43a8b41900d5c3d5c, type: 3}

@@ -332,7 +332,7 @@ MonoBehaviour:
   blockRotation: 0
   rotationSpeed: 360
   yKnockbackForce: 0
-  jumpForce: 18
+  jumpForce: 14
   jumpDustParticle: {fileID: 7372988862570129677, guid: fcae063982014264a8207bfb948556b9,
     type: 3}
   jumpSounds:
@@ -340,8 +340,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a96b8579f808e0a4fa4790230bec9eae, type: 3}
   - {fileID: 8300000, guid: 751f3f1502fd67445b1783b55cb3144f, type: 3}
   isFalling: 0
-  gravityMultiplier: 10
-  fallingSpeedLimit: 16
+  gravityMultiplier: 8
+  fallingSpeedLimit: 30
   fallingVelocityTreshhold: 20
   groundedLayers:
     serializedVersion: 2

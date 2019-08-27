@@ -24,7 +24,7 @@ namespace CGJ.Movement
         [SerializeField] float jumpForce = 6.0f;
         [SerializeField] GameObject jumpDustParticle = null;
         [SerializeField] AudioClip[] jumpSounds;
-        [SerializeField] bool isFalling = false;
+        [SerializeField] bool isFalling = false;    //TODO Remove exposure
         [SerializeField] float gravityMultiplier = 3.0f;
         [SerializeField] float fallingSpeedLimit = 8f;
         [SerializeField] float fallingVelocityTreshhold = 8.61f;
@@ -226,7 +226,7 @@ namespace CGJ.Movement
         void Jump()
         {
             grounded = false;
-            
+
             // Physically make the character jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
