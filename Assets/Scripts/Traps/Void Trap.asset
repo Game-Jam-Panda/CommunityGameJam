@@ -17,7 +17,7 @@ MonoBehaviour:
   collisionParticle: {fileID: 1591823490678448535, guid: 0ad742cd4eba33343ac9a25ffc3e808a,
     type: 3}
   knockbackEnabled: 1
-  hitKnockbackTime: 0.4
+  hitKnockbackTime: 1
   knockbackForceX: -8
   knockbackForceY: -5
   instantKill: 1
