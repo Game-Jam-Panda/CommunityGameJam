@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace CGJ.Traps
 {
-    public class FireTrapBehaviour : TrapBehaviour
+    public class SpikeTrapBehaviour : TrapBehaviour
     {
         public override void ProcessTrapBehaviour()
         {}
 
         public override void TriggerCollisionBehaviour(Vector3 contactPoint, Vector3 contactNormal)
         {
-            Debug.Log("Triggered Fire Trap Collision");
+            Debug.Log("Triggered Spike Trap Collision");
             SpawnParticleAtContactPoint(config.GetCollisionParticle(), contactPoint, contactNormal);
         }
     }

@@ -10,7 +10,6 @@ namespace CGJ.Characters
     public class PlayerCollisions : MonoBehaviour
     {
         [SerializeField] bool debug = false;    //TODO Remove variable
-        [SerializeField] LayerMask triggerLayers;
 
         HealthSystem playerHealth = null;
         CharacterMovement playerMovement = null;
@@ -23,28 +22,33 @@ namespace CGJ.Characters
 
         private void OnTriggerEnter(Collider col)
         {
-            //direction towards the col
-            Vector3 toCollider = (col.transform.position - playerMovement.GetColliderCenterPosition()).normalized;
-            //Vector3.
-            RaycastHit hit;
-            if (Physics.Raycast(playerMovement.GetColliderCenterPosition(), toCollider, out hit))
+            // Trap collisions
+            if(col.gameObject.GetComponent<Trap>())
             {
-                if(debug) { Debug.DrawRay(playerMovement.GetColliderCenterPosition(), toCollider, Color.blue, 1.0f); }
+                var colTrapComponent = col.GetComponent<Trap>();
 
-                Vector3 contactPoint = hit.point;
-                Vector3 contactPointNormal = hit.normal;
+                //direction towards the col
+                var colliderWithoutZ = new Vector3(colTrapComponent.GetColliderCenterPosition().x, colTrapComponent.GetColliderCenterPosition().y, 0);
+                var playerWithoutZ = new Vector3(playerMovement.GetColliderCenterPosition().x, playerMovement.GetColliderCenterPosition().y, 0);
+                //Vector3 toCollider = (col.transform.position - playerMovement.GetColliderCenterPosition()).normalized;
+                Vector3 toCollider = colliderWithoutZ - playerWithoutZ;
 
-                // Trap collisions
-                if(col.gameObject.GetComponent<Trap>())
+                RaycastHit hit;
+                if (Physics.Raycast(playerMovement.GetColliderCenterPosition(), toCollider, out hit))
                 {
+                    if(debug) { Debug.DrawRay(playerMovement.GetColliderCenterPosition(), toCollider, Color.blue, 1.0f); }
+
+                    Vector3 contactPoint = hit.point;
+                    Vector3 contactPointNormal = hit.normal;
+
                     // Get trap infos
                     TrapConfig trapConfig = col.gameObject.GetComponent<Trap>().GetTrapConfig();
                     TrapTypes trapType = trapConfig.GetTrapType();
 
-                    //***WIP Knockback***//
+                    //***Knockback***// (WIP)
                     //Freeze playermovement for a time && Push the player on the opposite side
                     if(trapConfig.IsKockbackEnabled())
-                    { playerMovement.Knockback(trapConfig.GetHitKnockbackTime(), trapConfig.GetHitKnockbackForce(), contactPointNormal); }
+                    { playerMovement.Knockback(trapConfig.GetHitKnockbackTime(), trapConfig.GetKnockbackForceX(), trapConfig.GetKnockbackForceY(), contactPointNormal); }
 
                     //***Collision effect***//
                     SpawnTrapCollisionParticleByContact(contactPoint, contactPointNormal, trapConfig);
@@ -54,7 +58,6 @@ namespace CGJ.Characters
                     {
                         #region VOID
                         case TrapTypes.Void:
-
                             // Instant kill or one-time damage
                             if((trapConfig as VoidTrapConfig).IsInstantKill())
                             {
@@ -64,26 +67,23 @@ namespace CGJ.Characters
                             {
                                 playerHealth.TakeDamage(trapConfig.GetTrapDamage());
                             }
-
                             break;
                         #endregion
-
                         #region FIRE
                         case TrapTypes.Fire:
-
+                            playerHealth.TakeDamage(trapConfig.GetTrapDamage());
                             break;
                         #endregion
-
                         #region SPIKES
                         case TrapTypes.Spikes:
-
+                            playerHealth.TakeDamage(trapConfig.GetTrapDamage());
                             break;
                         #endregion
                         default:
                             break;
                     }
-                }
             }
+        }
         }
 
         void SpawnTrapCollisionParticleByContact(Vector3 contactPoint, Vector3 contactPointNormal, TrapConfig trapConfig)

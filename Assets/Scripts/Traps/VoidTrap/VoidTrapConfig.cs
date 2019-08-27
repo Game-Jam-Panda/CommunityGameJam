@@ -1,9 +1,8 @@
-using CGJ.Utils;
 using UnityEngine;
 
 namespace CGJ.Traps
 {
-    [CreateAssetMenu(menuName = "CGJ/Create Trap/Void Trap", fileName = "Void Trap")]
+    [CreateAssetMenu(menuName = "CGJ/Create Trap/Void Trap", fileName = "Trap_Void")]
     public class VoidTrapConfig : TrapConfig
     {
         [Header("Void Trap Settings")]
@@ -14,7 +13,7 @@ namespace CGJ.Traps
 
         public override TrapBehaviour AttachAndGetTrapBehaviour(GameObject trapToAttachOn)
         {
-            VoidTrapBehaviour trapBehaviour = trapToAttachOn.AddComponent<VoidTrapBehaviour>();
+            var trapBehaviour = trapToAttachOn.AddComponent<VoidTrapBehaviour>();
             return trapBehaviour;
         }
     }
