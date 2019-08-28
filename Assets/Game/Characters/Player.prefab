@@ -395,6 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  playerHitParticle: {fileID: 0}
 --- !u!54 &1564362025350553985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -622,7 +623,7 @@ PrefabInstance:
     - target: {fileID: 3329114794632235024, guid: 4ef178733b74f89459cda4299a931851,
         type: 3}
       propertyPath: m_Name
-      value: Energy Aura
+      value: Strong Dark Energy Aura
       objectReference: {fileID: 0}
     - target: {fileID: 9075723485081680222, guid: 4ef178733b74f89459cda4299a931851,
         type: 3}
@@ -697,7 +698,7 @@ PrefabInstance:
     - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}
       propertyPath: m_Name
-      value: Serenity Aura
+      value: Dark Energy Aura
       objectReference: {fileID: 0}
     - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}

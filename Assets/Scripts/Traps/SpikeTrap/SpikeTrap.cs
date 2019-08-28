@@ -68,18 +68,19 @@ namespace CGJ.Traps
                 return;
             }
 
-            //Trigger the trap
+            //It's time to Trigger the trap
             CloseSpikes();
         }
         private void ProcessTrapArming()
         {
+            //Wait for arming cooldown
             if(elapsedArmingTime < armCooldown)
             {
                 elapsedArmingTime += Time.deltaTime;
                 return;
             }
             
-            //Arm the trap
+            //It's time to Arm the trap
             OpenSpikes();
         }
 

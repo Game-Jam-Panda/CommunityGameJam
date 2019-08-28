@@ -8,9 +8,11 @@ namespace CGJ.Traps
     {
         [Header("General - Trap settings")]
         [SerializeField] TrapTypes trapType;
+        [SerializeField] bool instantKill = true;
         [Header("General - Collision settings")]
         [SerializeField] int damage;
         [SerializeField] GameObject collisionParticle;
+        [SerializeField] GameObject trapHitEffect;
         [Header("General - Knockback settings")]
         [SerializeField] bool knockbackEnabled = false;
         [SerializeField] float hitKnockbackTime = 0.3f;
@@ -19,9 +21,12 @@ namespace CGJ.Traps
 
         //Trap settings
         public TrapTypes GetTrapType() { return trapType; }
+        public bool IsInstantKill() { return instantKill; }
         //Collision
         public int GetTrapDamage() { return damage; }
         public GameObject GetCollisionParticle() { return collisionParticle; }
+        //Hit Effect
+        public GameObject GetTrapHitEffect() { return trapHitEffect; }
         //Knockback
         public bool IsKockbackEnabled() { return knockbackEnabled; }
         public float GetHitKnockbackTime() { return hitKnockbackTime; }

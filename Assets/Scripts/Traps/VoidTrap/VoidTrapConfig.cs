@@ -5,11 +5,7 @@ namespace CGJ.Traps
     [CreateAssetMenu(menuName = "CGJ/Create Trap/Void Trap", fileName = "Trap_Void")]
     public class VoidTrapConfig : TrapConfig
     {
-        [Header("Void Trap Settings")]
-        [SerializeField] bool instantKill = true;
-        
-        //Trap settings
-        public bool IsInstantKill() { return instantKill; }
+        //[Header("Void Trap Settings")]
 
         public override TrapBehaviour AttachAndGetTrapBehaviour(GameObject trapToAttachOn)
         {

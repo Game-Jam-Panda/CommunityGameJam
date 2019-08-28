@@ -10,6 +10,7 @@ namespace CGJ.Characters
     public class PlayerCollisions : MonoBehaviour
     {
         [SerializeField] bool debug = false;    //TODO Remove variable
+        [SerializeField] GameObject playerHitParticle = null;
 
         HealthSystem playerHealth = null;
         CharacterMovement playerMovement = null;
@@ -38,6 +39,7 @@ namespace CGJ.Characters
                 {
                     if(debug) { Debug.DrawRay(playerMovement.GetColliderCenterPosition(), toCollider, Color.blue, 1.0f); }
 
+                    // Contact point info
                     Vector3 contactPoint = hit.point;
                     Vector3 contactPointNormal = hit.normal;
 
@@ -45,38 +47,46 @@ namespace CGJ.Characters
                     TrapConfig trapConfig = col.gameObject.GetComponent<Trap>().GetTrapConfig();
                     TrapTypes trapType = trapConfig.GetTrapType();
 
+                    //*** Damage ***//
+                    // Instant kill or trap damage
+                    if(trapConfig.IsInstantKill())
+                    { playerHealth.TakeDamage(playerHealth.GetCurrentHealth()); }
+                    else
+                    { playerHealth.TakeDamage(trapConfig.GetTrapDamage()); }
+
                     //***Knockback***// (WIP)
-                    //Freeze playermovement for a time && Push the player on the opposite side
+                    //Freeze player for a time && Push him on the opposite side
                     if(trapConfig.IsKockbackEnabled())
                     { playerMovement.Knockback(trapConfig.GetHitKnockbackTime(), trapConfig.GetKnockbackForceX(), trapConfig.GetKnockbackForceY(), contactPointNormal); }
 
                     //***Collision effect***//
                     SpawnTrapCollisionParticleByContact(contactPoint, contactPointNormal, trapConfig);
+                    SpawnPlayerHitParticle(trapConfig);
 
-                    //***TRAPS DAMAGE LOGIC***// Depending on the trap, use a damage logic specific for that type of trap
+                    //***TRAPS SPECIFIC LOGIC***// Call trap-specific code
                     switch (trapType)
                     {
                         #region VOID
                         case TrapTypes.Void:
-                            // Instant kill or one-time damage
-                            if((trapConfig as VoidTrapConfig).IsInstantKill())
-                            {
-                                playerHealth.TakeDamage(playerHealth.GetCurrentHealth());
-                            }
-                            else
-                            {
-                                playerHealth.TakeDamage(trapConfig.GetTrapDamage());
-                            }
+                            
                             break;
                         #endregion
+
                         #region FIRE
                         case TrapTypes.Fire:
-                            playerHealth.TakeDamage(trapConfig.GetTrapDamage());
+                        
                             break;
                         #endregion
+
                         #region SPIKES
                         case TrapTypes.Spikes:
-                            playerHealth.TakeDamage(trapConfig.GetTrapDamage());
+
+                            break;
+                        #endregion
+
+                        #region LASER
+                        case TrapTypes.Laser:
+
                             break;
                         #endregion
                         default:
@@ -89,6 +99,14 @@ namespace CGJ.Characters
         void SpawnTrapCollisionParticleByContact(Vector3 contactPoint, Vector3 contactPointNormal, TrapConfig trapConfig)
         {
             trapConfig.SpawnAtContact(trapConfig.GetCollisionParticle(), contactPoint, contactPointNormal);
+        }
+
+        void SpawnPlayerHitParticle(TrapConfig trapConfig)
+        {
+            var hitParticle = trapConfig.GetTrapHitEffect();
+            if(hitParticle == null) { return; }
+
+            Instantiate(hitParticle, transform.position, Quaternion.identity);
         }
     }
 }

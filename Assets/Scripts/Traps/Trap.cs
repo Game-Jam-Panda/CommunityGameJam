@@ -12,6 +12,7 @@ namespace CGJ.Traps
         [SerializeField] protected Transform colliderCenter = null;
 
         public TrapConfig GetTrapConfig() { return trapConfig; }
+
         public Vector3 GetColliderCenterPosition()
         {
             if(colliderCenter) 
