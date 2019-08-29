@@ -11,6 +11,11 @@ namespace CGJ.System
         [Header("Checkpoint")]
         [SerializeField] GameObject checkpointNotification;
 
+        private void Awake()
+        {
+            SystemManager.systems.uiManager = this;
+        }
+
         private void OnEnable() {
             //Checkpoint
             SystemManager.systems.checkpointSystem.onCheckpointUpdate += SpawnCheckpointNotification;
