@@ -43,7 +43,8 @@ namespace CGJ.System
             {
                currentHealth = maxHearts;
             }
-    
+
+            //TODO REMOVE AFTER FINISHING TESTS 
             DamageTesting();
         }
     
@@ -67,19 +68,25 @@ namespace CGJ.System
         
         public void TakeDamage(int damage)
         {
+            //Remove health
             int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
             currentHealth = newHealth;
-            GetComponent<AudioSource>().clip = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
-            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+
+            //Play random damage sound
+            var randomDamageSFX = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
+            GetComponent<AudioSource>().PlayOneShot(randomDamageSFX);
+
             onHealthChange();
         }
         public void Heal(int healAmount)
         {
+            //Add health
             int newHealth = Mathf.Clamp(currentHealth + healAmount, currentHealth, maxHearts);
             currentHealth = newHealth;
             onHealthChange();
         }
-    
+
+        //TODO REMOVE AFTER FINISHING TESTS
         void DamageTesting()
         {
             if(Input.GetKeyDown(KeyCode.R))

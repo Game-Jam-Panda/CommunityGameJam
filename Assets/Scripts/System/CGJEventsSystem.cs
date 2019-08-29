@@ -9,22 +9,10 @@ namespace CGJ.System
     {
         [SerializeField] GameObject checkpointNotificationPosition;
 
-        public event Action onButtonClicked;
-
-        private void OnEnable() {
-            //Checkpoint
-            //SystemManager.systems.checkpointSystem.onCheckpointUpdate += ActivateCheckpointLantern;
-        }
-        private void OnDisable(){
-            //Checkpoint
-            //SystemManager.systems.checkpointSystem.onCheckpointUpdate -= ActivateCheckpointLantern;
-        }
-
         //Game
         public void QuitGame()
         {
-            onButtonClicked();
-            
+            //SystemManager.systems.soundManager.PlaySound();
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
             #endif

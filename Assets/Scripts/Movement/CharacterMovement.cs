@@ -234,8 +234,8 @@ namespace CGJ.Movement
             if (jumpDustParticle != null) { Instantiate(jumpDustParticle, transform.position, Quaternion.identity); }
             
             //Jump Sound effect
-            GetComponent<AudioSource>().clip = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)];
-            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+            var randomJumpSound = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)];
+            GetComponent<AudioSource>().PlayOneShot(randomJumpSound);
         }
 #endregion
 

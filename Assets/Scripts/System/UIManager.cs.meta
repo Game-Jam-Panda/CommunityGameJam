@@ -3,7 +3,11 @@ guid: 82b6f7ca8e9a6764b9cb4a6737a6b5b3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - notificationOutlet: {fileID: 1141480854453449675, guid: 3eef5501cca84bc43b96a49cc44fec05,
+      type: 3}
+  - checkpointNotification: {fileID: 5860238975328730527, guid: b9ef5c276eabf18409c98e050794d5a4,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

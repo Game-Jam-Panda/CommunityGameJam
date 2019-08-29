@@ -42,7 +42,6 @@ namespace CGJ.Characters
                     // Contact point info
                     Vector3 contactPoint = hit.point;
                     Vector3 contactPointNormal = hit.normal;
-
                     // Get trap infos
                     TrapConfig trapConfig = col.gameObject.GetComponent<Trap>().GetTrapConfig();
                     TrapTypes trapType = trapConfig.GetTrapType();
@@ -54,12 +53,12 @@ namespace CGJ.Characters
                     else
                     { playerHealth.TakeDamage(trapConfig.GetTrapDamage()); }
 
-                    //***Knockback***// (WIP)
+                    //*** Knockback ***//
                     //Freeze player for a time && Push him on the opposite side
                     if(trapConfig.IsKockbackEnabled())
                     { playerMovement.Knockback(trapConfig.GetHitKnockbackTime(), trapConfig.GetKnockbackForceX(), trapConfig.GetKnockbackForceY(), contactPointNormal); }
 
-                    //***Collision effect***//
+                    //*** Collision effect ***//
                     SpawnTrapCollisionParticleByContact(contactPoint, contactPointNormal, trapConfig);
                     SpawnPlayerHitParticle(trapConfig);
 
@@ -92,8 +91,8 @@ namespace CGJ.Characters
                         default:
                             break;
                     }
+                }
             }
-        }
         }
 
         void SpawnTrapCollisionParticleByContact(Vector3 contactPoint, Vector3 contactPointNormal, TrapConfig trapConfig)

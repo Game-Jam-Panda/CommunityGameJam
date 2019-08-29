@@ -21,7 +21,9 @@ namespace CGJ.System
             systems.sceneLoadingSystem = gameObject.AddComponent<CGJSceneLoadingSystem>();
             systems.eventsSystem = gameObject.AddComponent<CGJEventsSystem>();
             systems.checkpointSystem = gameObject.AddComponent<CheckpointSystem>();
-            //systems.uiManager = gameObject.AddComponent<UIManager>();
+            systems.soundManager = gameObject.AddComponent<SoundManager>();
+            systems.narratorSystem = gameObject.AddComponent<NarratorSystem>();
+            systems.uiManager = gameObject.AddComponent<UIManager>();
             yield return null;
         }
     }
@@ -32,5 +34,7 @@ namespace CGJ.System
         public CGJEventsSystem eventsSystem { get; set; }
         public UIManager uiManager { get; set; }
         public CheckpointSystem checkpointSystem { get; set; }
+        public SoundManager soundManager { get; set; }
+        public NarratorSystem narratorSystem { get; set; }
     }
 }
