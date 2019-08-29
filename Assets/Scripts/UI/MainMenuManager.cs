@@ -20,6 +20,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void StartGame()
     {
-        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(2);
+        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(3);
     }
 }
