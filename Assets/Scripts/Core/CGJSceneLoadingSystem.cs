@@ -46,16 +46,18 @@ namespace CGJ.System
 
         private IEnumerator LoadScene()
         {
-            onSceneLoad();
+            onSceneLoad?.Invoke();
 
             //Loading screen
-            SceneManager.LoadScene(SystemManager.systems.sceneLoadingSystem.GetLoadingScreenIndex());
-            yield return new WaitForSeconds(0.2f);
+            var loadingScreenOperation = SceneManager.LoadSceneAsync(SystemManager.systems.sceneLoadingSystem.GetLoadingScreenIndex());
+            yield return loadingScreenOperation;
 
             //Load desired scene during the loading screen
-            SceneManager.LoadSceneAsync(SystemManager.systems.sceneLoadingSystem.GetSceneToLoad());
+            var loadSceneOperation = SceneManager.LoadSceneAsync(SystemManager.systems.sceneLoadingSystem.GetSceneToLoad());
+            yield return loadSceneOperation;
             UpdateCurrentSceneValue();
-            onSceneLoaded();
+
+            onSceneLoaded?.Invoke();
         }
 
         private void UpdateCurrentSceneValue()

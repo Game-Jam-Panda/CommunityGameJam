@@ -4164,6 +4164,7 @@ GameObject:
   - component: {fileID: 1320089430}
   - component: {fileID: 1320089429}
   - component: {fileID: 1320089428}
+  - component: {fileID: 1320089432}
   m_Layer: 5
   m_Name: '--- Main Menu Interface ---'
   m_TagString: Untagged
@@ -4253,6 +4254,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.89, y: 3.93}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1320089432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320089427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07685ce4c7cec5440832e3efe079c401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGame: {fileID: 1539702187}
+  quit: {fileID: 1200710509}
 --- !u!1001 &1453319761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4636,8 +4651,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadSceneByIndex
+      - m_Target: {fileID: 1584754982424658484}
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6032,3 +6047,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b11c246f410f574082a0da3720d8f4e, type: 3}
+--- !u!1 &1584754982424658484 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6881456088569774447, guid: 0b11c246f410f574082a0da3720d8f4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1584754982424658483}
+  m_PrefabAsset: {fileID: 0}
