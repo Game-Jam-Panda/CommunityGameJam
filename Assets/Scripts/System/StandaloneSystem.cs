@@ -13,9 +13,13 @@ namespace CGJ.System
             StartCoroutine(InitSystem());
         }
 
-        private IEnumerator InitSystem()
+        IEnumerator InitSystem()
         {
             // init stuff in ISystems interface
+            systems.sceneLoadingSystem = gameObject.AddComponent<CGJSceneLoadingSystem>();
+            systems.eventsSystem = gameObject.AddComponent<CGJEventsSystem>();
+            systems.uiManager = gameObject.AddComponent<UIManager>();
+            systems.checkpointSystem = gameObject.AddComponent<CheckpointSystem>();
             yield return null;
         }
     }

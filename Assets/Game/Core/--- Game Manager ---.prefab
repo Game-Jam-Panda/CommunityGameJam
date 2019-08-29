@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 7741061296961340441}
   - component: {fileID: 6523568383447096290}
   - component: {fileID: 5450902298862224678}
-  - component: {fileID: 2631915994220261615}
-  - component: {fileID: 5691490145345999001}
-  - component: {fileID: 3635286810627535833}
   m_Layer: 0
   m_Name: '--- Game Manager ---'
   m_TagString: Untagged
@@ -31,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8290690036480504154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61,40 +59,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistantObjectPrefab: {fileID: 3920441485507786687, guid: cc9c45ff13de1e740bbe779dd80e7e6f,
     type: 3}
---- !u!114 &2631915994220261615
+--- !u!1 &6881456088569774447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8290690036480504154}
+  - component: {fileID: 5423031638443673094}
+  m_Layer: 0
+  m_Name: System Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8290690036480504154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881456088569774447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7741061296961340441}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5423031638443673094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383866762574851807}
+  m_GameObject: {fileID: 6881456088569774447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d74f43ba808ff4babda703fb3cbe93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkpointNotificationPosition: {fileID: 0}
---- !u!114 &5691490145345999001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383866762574851807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b64a0f96575cd2243a6895a6ff4ea8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3635286810627535833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383866762574851807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d469a529acbf13f43b3be923937ad145, type: 3}
+  m_Script: {fileID: 11500000, guid: 06d009bb6fc2cf542a52455ebefd9b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
