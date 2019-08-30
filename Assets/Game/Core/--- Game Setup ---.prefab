@@ -194,6 +194,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7455186537757557362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 339280379885502913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &264180704071339881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 339280379885502913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &984049436233993089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 656775724206869056, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 339280379885502913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8098083544549039294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,6 +312,21 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 564252560126464956}
+    - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: shieldTimerBar
+      value: 
+      objectReference: {fileID: 7455186537757557362}
+    - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: shieldAmountText
+      value: 
+      objectReference: {fileID: 264180704071339881}
+    - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: shieldTimerText
+      value: 
+      objectReference: {fileID: 984049436233993089}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b65f63d78612fd48a9eb733573b4bd2, type: 3}
 --- !u!4 &385799860140178206 stripped

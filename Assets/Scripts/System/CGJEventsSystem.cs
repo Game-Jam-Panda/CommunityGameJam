@@ -13,18 +13,9 @@ namespace CGJ.System
         public void QuitGame()
         {
             //SystemManager.systems.soundManager.PlaySound();
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #endif
+            
             
             Application.Quit();
-        }
-
-        //Checkpoints
-        public void ActivateCheckpointLantern(Checkpoint checkpoint)
-        {
-            var checkpointLantern = checkpoint.GetCheckpointLantern();
-            checkpointLantern.SetActive(true);
         }
 
         //Enemies

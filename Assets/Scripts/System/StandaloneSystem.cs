@@ -18,12 +18,16 @@ namespace CGJ.System
             // init stuff in ISystems interface
             systems = new StandaloneSystems();
 
+            //Add systems
             systems.sceneLoadingSystem = gameObject.AddComponent<CGJSceneLoadingSystem>();
             systems.eventsSystem = gameObject.AddComponent<CGJEventsSystem>();
             systems.checkpointSystem = gameObject.AddComponent<CheckpointSystem>();
             systems.soundManager = gameObject.AddComponent<SoundManager>();
-            systems.narratorSystem = gameObject.AddComponent<NarratorSystem>();
             systems.uiManager = gameObject.AddComponent<UIManager>();
+
+            //Get systems
+            systems.narratorSystem = FindObjectOfType<NarratorSystem>();
+            systems.soundManager = FindObjectOfType<SoundManager>();
             yield return null;
         }
     }

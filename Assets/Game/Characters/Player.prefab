@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 8446658304591325088}
   - component: {fileID: 2496396541745737261}
   - component: {fileID: 1431733779523744558}
+  - component: {fileID: 5485677149149442252}
   - component: {fileID: 5276823443660828289}
   - component: {fileID: 1564362025350553985}
   - component: {fileID: 6574537565782891010}
@@ -340,11 +341,11 @@ MonoBehaviour:
   fullHeart: {fileID: 21300000, guid: 8710fc327d02d8545befa1763949a8b6, type: 3}
   emptyHeart: {fileID: 21300000, guid: fcd1ff7197eefa44791b187d61bc8de1, type: 3}
   maxHearts: 3
-  currentHealth: 1
   damageSFXArray:
   - {fileID: 8300000, guid: 16b7ea38d7d794249b3cfb277eb6e3a0, type: 3}
   - {fileID: 8300000, guid: 380c174884dc9e342a71baac2d8b85ba, type: 3}
   - {fileID: 8300000, guid: 9a0652d620f20bb4ab5f536b1d84472e, type: 3}
+  deathTime: 2
 --- !u!114 &1431733779523744558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockVerticalMovement: 1
-  controlsBlocked: 0
   blockMovement: 0
   moveSpeed: 7.5
   allowMovementTreshhold: 0
@@ -382,6 +382,22 @@ MonoBehaviour:
   groundedCheckSource: {fileID: 7258002392870701243}
   groundedCheckDistance: 0.08
   grounded: 1
+--- !u!114 &5485677149149442252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013810823872685877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b440846a936c2cb4a91a56d09c1040d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldTimerBar: {fileID: 0}
+  shieldTimerText: {fileID: 0}
+  shieldAmountText: {fileID: 0}
+  shieldTemporaryTime: 5
 --- !u!114 &5276823443660828289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6527407804684413783, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}

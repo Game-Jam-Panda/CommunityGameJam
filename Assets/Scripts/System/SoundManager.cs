@@ -6,11 +6,21 @@ namespace CGJ.System
 {
     public class SoundManager : MonoBehaviour
     {
-        AudioSource managerAudioSource;
+        AudioSource managerAudioSource = null;
 
         void Awake()
         {
-            managerAudioSource = gameObject.AddComponent<AudioSource>();
+            // Spawn generic SoundManager AudioSource
+            if(managerAudioSource == null)
+            { 
+                managerAudioSource = gameObject.AddComponent<AudioSource>();
+            }
+            else
+            {
+                managerAudioSource = GetComponent<AudioSource>();
+            }
+            
+            managerAudioSource.playOnAwake = false;
         }
 
         public void PlaySound(AudioClip audioClip)

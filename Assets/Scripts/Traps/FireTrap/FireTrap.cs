@@ -10,12 +10,18 @@ namespace CGJ.Traps
         [Header("Fire Trap settings")]
         
         [SerializeField] bool toogleFireOverTime = false;
-        [SerializeField] GameObject firePrefab = null;
-        [SerializeField] Vector3 fireSpawnPosition;
+        [SerializeField] GameObject fire = null;
         [Tooltip("Time to wait before triggering the trap after the moment it becomes possible.")]
         [SerializeField] float cooldownBetweenFires = 2.0f;
         float elapsedCooldownTime = 0.0f;
         bool fireEnabled = true;
+
+        BoxCollider col;
+
+        void Awake()
+        {
+            col = GetComponent<BoxCollider>();
+        }
 
         void Start()
         {
@@ -53,6 +59,12 @@ namespace CGJ.Traps
         private void ToggleFire()
         {
             fireEnabled = !fireEnabled;
+
+            //Toggle the fire visibility & functionnality
+            fire.SetActive(fireEnabled);
+            col.enabled = fireEnabled;
+
+            //Reset toggle cooldown
             elapsedCooldownTime = 0.0f;
         }
 #endregion

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CGJ.Movement;
+using CGJ.System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CGJ.System
+namespace CGJ.Core
 {
     public class HealthSystem : MonoBehaviour
     {
@@ -14,12 +16,25 @@ namespace CGJ.System
         [SerializeField] Sprite emptyHeart;
     
         //TODO Remove exposure
+        [Header("Health")]
         [SerializeField] int maxHearts = 3;
-        [SerializeField] int currentHealth = 1;
+        int currentHealth = 3;
+        
+        bool alive = true;
 
+        //[Header("Shield")]
+        int shieldedHealth = 0;
+
+        [Header("Damage settings")]
         [SerializeField] AudioClip[] damageSFXArray;
-    
+
+        [Header("Death")]
+        [SerializeField] float deathTime = 1.0f;
+        
+        AudioSource audioSource = null;
+
         public event Action onHealthChange;
+        public event Action onDeath;
     
         // Delegate Subscription
         void OnEnable()
@@ -27,13 +42,19 @@ namespace CGJ.System
         void OnDisable()
         { onHealthChange -= UpdateHealthUI; }
 
+        //Health
         public int GetMaxHearts() { return maxHearts; }
         public int GetCurrentHealth() { return currentHealth; }
 
+        //Shield - Setters
+        public void SetShieldValue(int shieldValue) { shieldedHealth = shieldValue; }
+
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
+
             // Setup health on start
-            onHealthChange();
+            onHealthChange?.Invoke();
         }
     
         void Update()
@@ -48,6 +69,7 @@ namespace CGJ.System
             DamageTesting();
         }
     
+    #region Health UI
         void UpdateHealthUI()
         {
             for(int i = 0; i < hearts.Length; i++)
@@ -65,25 +87,65 @@ namespace CGJ.System
                 { hearts[i].enabled = false; }
             }
         }
-        
+    #endregion
+    
+    #region Health Calls
+    
         public void TakeDamage(int damage)
         {
-            //Remove health
+            if(!alive) { return; }
+
+            // Possibly Shield from damage
+            if(shieldedHealth >= 1) 
+            {
+                shieldedHealth -= 1;
+                return;
+            }
+            
             int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
-            currentHealth = newHealth;
 
             //Play random damage sound
             var randomDamageSFX = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
-            GetComponent<AudioSource>().PlayOneShot(randomDamageSFX);
+            audioSource.PlayOneShot(randomDamageSFX);
 
-            onHealthChange();
+            // Remove health
+            currentHealth = newHealth;
+            onHealthChange?.Invoke();
+
+            // Die
+            if(newHealth <= 0)
+            {
+                StartCoroutine(Die()); return;
+            }
         }
         public void Heal(int healAmount)
         {
+            if(!alive) { return; }
+
             //Add health
             int newHealth = Mathf.Clamp(currentHealth + healAmount, currentHealth, maxHearts);
             currentHealth = newHealth;
             onHealthChange();
+        }
+        public void RestoreHealth()
+        {
+            currentHealth = maxHearts;
+            alive = true;
+            onHealthChange();
+        }
+
+        IEnumerator Die()
+        {
+            alive = false;
+            
+            onDeath();
+            
+            //Death sound
+            // audioSource.PlayOneShot(deathSound);
+
+            // Wait for death time and respawn to last checkpoint
+            yield return new WaitForSeconds(deathTime);
+            SystemManager.systems.checkpointSystem.RespawnToLastCheckpoint();
         }
 
         //TODO REMOVE AFTER FINISHING TESTS
@@ -102,5 +164,6 @@ namespace CGJ.System
                 TakeDamage(maxHearts);
             }
         }
+    #endregion
     }
 }

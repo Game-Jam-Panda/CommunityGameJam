@@ -8,18 +8,30 @@ namespace CGJ.System
 {
     public class NarratorSystem: MonoBehaviour
     {
-        [SerializeField] AudioSource narratorAudiosource;
-        List<AudioClip> voicelinesInQueue;
-        AudioClip lastVoiceline;
-        float minDelayBetweenVoicelines = 0.3f;
+        [SerializeField] float minDelayBetweenVoicelines = 0.3f;
+
+        AudioSource narratorAudiosource = null;
+        List<AudioClip> voicelinesInQueue = new List<AudioClip>();
+        
         bool canPlayVoiceline = true;
-    
-        public event Action onVoicelineStart;
-        public event Action onVoicelieEnd;
+
+        void Awake()
+        {
+            // Reference Narrator AudioSource
+            if(narratorAudiosource == null)
+            { 
+                narratorAudiosource = gameObject.AddComponent<AudioSource>();
+            }
+            else
+            {
+                narratorAudiosource = GetComponent<AudioSource>();
+            }
+
+            narratorAudiosource.playOnAwake = false;
+        }
 
         void Update()
         {
-            //No voicelines to play
             if(voicelinesInQueue.Count < 1) { return; }
 
             // At least one voiceline to play
@@ -31,27 +43,25 @@ namespace CGJ.System
 
         public void TriggerVoiceline(AudioClip voicelineClip)
         {
-            //TODO Add clip to queue
+            //Add clip to queue
             voicelinesInQueue.Add(voicelineClip);
         }
 
         IEnumerator PlayVoicelinesInQueue()
         {
-            foreach(AudioClip voiceline in voicelinesInQueue)
-            {
-                //Can't play another voice line
-                canPlayVoiceline = false;
+            //Can't play another voice line
+            canPlayVoiceline = false;
 
-                //Play the desired voiceline & Remove it from the queue
-                narratorAudiosource.PlayOneShot(voiceline);
-                voicelinesInQueue.Remove(voicelinesInQueue[0]);
-                onVoicelineStart();
-                
-                //Wait for the voiceline length + delay between each voiceline
-                yield return new WaitForSeconds(voiceline.length + minDelayBetweenVoicelines);
-                //Able to play another voiceline again
-                canPlayVoiceline = true;
-            }
+            //Play the desired voiceline & Remove it from the queue
+            var firstVoicelineInQueue = voicelinesInQueue[0];
+            narratorAudiosource.PlayOneShot(firstVoicelineInQueue);
+            voicelinesInQueue.Remove(firstVoicelineInQueue);
+
+            //Wait for the voiceline length + delay between each voiceline
+            yield return new WaitForSeconds(firstVoicelineInQueue.length + minDelayBetweenVoicelines);
+            
+            //Able to play another voiceline again
+            canPlayVoiceline = true;
         }
     }
 }

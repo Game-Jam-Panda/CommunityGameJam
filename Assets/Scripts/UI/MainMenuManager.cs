@@ -4,8 +4,12 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public Button startGame;
-    public Button quit;
+    [SerializeField] Button startGame;
+    [SerializeField] int sceneToLoadOnStartGame = 3;
+    [SerializeField] Button quit;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip buttonClickSE = null;
 
     private void Start()
     {
@@ -15,11 +19,19 @@ public class MainMenuManager : MonoBehaviour
 
     private void QuitGame()
     {
+        SystemManager.systems.soundManager.PlaySound(buttonClickSE);
+
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+
         Application.Quit();
     }
 
     private void StartGame()
     {
-        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(3);
+        SystemManager.systems.soundManager.PlaySound(buttonClickSE);
+
+        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(sceneToLoadOnStartGame);
     }
 }

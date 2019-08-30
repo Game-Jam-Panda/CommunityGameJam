@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CGJ.Core;
 using UnityEngine;
 
 namespace CGJ.Movement
@@ -9,13 +10,14 @@ namespace CGJ.Movement
     {
         [Header("Movement settings")]
         [SerializeField] bool lockVerticalMovement = true;  //TODO Remove exposure
-        [SerializeField] bool controlsBlocked = false;      //TODO Remove exposure
         [SerializeField] bool blockMovement = false;
         [SerializeField] float moveSpeed = 6.0f;
         [SerializeField] float allowMovementTreshhold = 0.0f;
         [Header("Rotation settings")]
         [SerializeField] bool blockRotation = false;    //TODO Remove exposure
         [SerializeField] float rotationSpeed = 10.0f;
+        bool controlsBlocked = false;
+        bool frozen = false;
 
         [Header("Knockback settings")]
         [SerializeField] float yKnockbackForce = 0.0f;
@@ -53,21 +55,36 @@ namespace CGJ.Movement
         Rigidbody rb;
         CapsuleCollider col;
         Camera cam;
+        HealthSystem characterHealth;
 
         public Rigidbody GetRigidbody() { return rb; }
+        public bool ControlsBlocked() { return controlsBlocked; }
+
+        //Public Setters
+        public void FreezeControls() { controlsBlocked = true; }
+        public void UnfreezeControls() { controlsBlocked = false; }
+
+        // Delegate Subscription
+        void OnEnable()
+        { characterHealth.onDeath += FreezeControls; }
+        void OnDisable()
+        { characterHealth.onDeath -= FreezeControls; }
 
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             col = GetComponent<CapsuleCollider>();
+            characterHealth = GetComponent<HealthSystem>();
             cam = Camera.main;
         }
 
         void Update()
         {
+            if(controlsBlocked) { return; }
+
             ProcessMovementInput();
 
-            if(controlsBlocked) {return; }
+            if(frozen) {return; }
 
             ProcessJump();
         }
@@ -76,6 +93,7 @@ namespace CGJ.Movement
             if(isFalling) { ProcessFalling(); }
 
             if(controlsBlocked) { return; }
+            if(frozen) { return; }
 
             ProcessMovement();
         }
@@ -85,7 +103,7 @@ namespace CGJ.Movement
         public void Knockback(float freezeTime, float knockbackForceX, float knockbackForceY, Vector3 contactPointNormal)
         {
             //Freeze movement
-            StartCoroutine(FreezeMovementControlsForTime(freezeTime));
+            StartCoroutine(FreezeForTime(freezeTime));
 
             //Knockback direction
             var knockbackDirection = (contactPointNormal - transform.forward);  //Based on character forward direction
@@ -177,16 +195,16 @@ namespace CGJ.Movement
             }
         }
 
-        IEnumerator FreezeMovementControlsForTime(float time)
+        IEnumerator FreezeForTime(float time)
         {
             //Freeze
             rb.velocity.Set(0.0f, 0.0f, 0.0f);
             //Block physical movement
-            controlsBlocked = true;
+            frozen = true;
 
             //Reset after freeze time
             yield return new WaitForSeconds(time);
-            controlsBlocked = false;
+            frozen = false;
         }
 #endregion
 

@@ -8,6 +8,7 @@ MonoImporter:
       type: 3}
   - checkpointNotification: {fileID: 5860238975328730527, guid: b9ef5c276eabf18409c98e050794d5a4,
       type: 3}
+  - UIButtonClickSE: {fileID: 8300000, guid: bf542ad99cf706e4080698e57a10dcd1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

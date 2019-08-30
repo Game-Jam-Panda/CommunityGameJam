@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CGJ.Traps;
-using CGJ.System;
 using CGJ.Movement;
+using CGJ.Core;
 
 namespace CGJ.Characters
 {

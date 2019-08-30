@@ -8,6 +8,7 @@ namespace CGJ.Traps
     public class SpikeTrap : Trap
     {
         [Header("Spike Trap settings")]
+        [SerializeField] bool alwaysActive = false;
         [Tooltip("Time to wait before triggering the trap after the moment it becomes possible.")]
         [SerializeField] float triggerCooldown = 2.0f;
         [Tooltip("Time to wait before arming the trap after the moment it becomes possible.")]
@@ -35,17 +36,34 @@ namespace CGJ.Traps
         {
             AttachBehaviourOnTrap();
 
-            DisableCollider(); // Disable trap collider in the beginning for safety
+            //When trap is always Always active
+            if(alwaysActive)
+            {
+                InstantTriggerOnce();
+                return;
+            }
+
+            //When trap toggles
+            DisableCollider();     // Disable trap collider in the beginning for safety
             AbleToTriggerTrap();   //Trap needs to able to trigger at the beginning to start the animation chain
         }
 
         void Update()
         {
+            if(alwaysActive) { return; }
+
             ProcessAutoTrigger();
         }
 
 #region Trap processing
 
+        //--- Always active mode ---
+        void InstantTriggerOnce()
+        {
+            CloseSpikes();
+        }
+
+        //--- Auto trigger mode ---
         void ProcessAutoTrigger()
         {
             if(ableToTriggerTrap)
@@ -84,6 +102,7 @@ namespace CGJ.Traps
             OpenSpikes();
         }
 
+    #region Trap Toggles
         private void CloseSpikes()
         {
             SetAnimTrigger(CLOSE_TRIGGER);
@@ -92,6 +111,7 @@ namespace CGJ.Traps
         {
             SetAnimTrigger(OPEN_TRIGGER);
         }
+    #endregion
 #endregion
 
 #region Animator parameters
