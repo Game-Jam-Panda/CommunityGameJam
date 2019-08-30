@@ -28,7 +28,7 @@ namespace CGJ.System
             // Update reference of last checkpoint
             lastCheckpoint = newCheckpoint;
 
-            // Save used pickups so that they don't respawn
+            // Save unused pickups so that they respawn later
             SaveUnusedPickups();
 
             onCheckpointUpdate?.Invoke();
@@ -77,7 +77,7 @@ namespace CGJ.System
             foreach(Pickup pickup in pickupsThatCanBeLoaded)
             {
                 if(pickup.enabled) { continue; }
-                
+
                 pickup.SetWasTriggered(false);
                 pickup.gameObject.SetActive(true);
             }

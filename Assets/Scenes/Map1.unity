@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  voicelineToTrigger: {fileID: 8300000, guid: a1e344becd82a4f9ca85dcf00be96c18, type: 3}
+  voicelineToTrigger: {fileID: 8300000, guid: 3981522d49b6e464dbb3bad4b9d0af18, type: 3}
 --- !u!1001 &402221824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3990,7 +3990,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh90764
+  m_Name: pb_Mesh810704
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4885,7 +4885,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh90676
+  m_Name: pb_Mesh810612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5540,7 +5540,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh90798
+  m_Name: pb_Mesh810738
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5975,6 +5975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652646603696400712, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00002670288
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e29dd026a7e6b43a8b41900d5c3d5c, type: 3}
