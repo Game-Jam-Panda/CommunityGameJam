@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 namespace CGJ.Mechanics
 {
-    public class Shield : MonoBehaviour
+    public class ShieldMechanic : MonoBehaviour
     {
         [Header("Shield UI")]
+        [SerializeField] GameObject shieldTimer = null;
         [SerializeField] Image shieldTimerBar = null;
         [SerializeField] Text shieldTimerText = null;
         [SerializeField] Text shieldAmountText = null;
@@ -35,41 +36,65 @@ namespace CGJ.Mechanics
 
         void Update()
         {
+            // Bar visibility
+            if(shieldAmount > 0)
+            { ShowTimerBar(); }
+            else
+            { HideTimerBar(); }
+
             if(Input.GetKeyDown(KeyCode.F)){ AddShield(1); }   //Simulate shield pickup //TODO REMOVE
 
             // Reduce shield timer timer as long you you have a shield
             if(shieldAmount > 0 && shieldRemainingTime > 0)
             {
                 shieldRemainingTime -= Time.deltaTime;
-                UpdateUITimerText();
+                UpdateShieldTimerText();
                 return;
             }
 
-            // Remove 1 shield after the timer expires
-            RemoveShield(1);
+            if(shieldRemainingTime <= 0)
+            {
+                // Remove 1 shield after the timer expires
+                RemoveShield(1);
+            }
         }
 
     #region Shield UI
 
         void UpdateAllShieldUI()
         {
-            UpdateUIText();
-            UpdateUITimerText();
+            UpdateShieldsAmountText();
+            UpdateShieldTimerText();
         }
 
-        void UpdateUIText()
+        void HideTimerBar()
+        {
+            if(shieldTimer.activeSelf)
+            {
+                shieldTimer.SetActive(false);
+            }
+        }
+        void ShowTimerBar()
+        {
+            if(!shieldTimer.activeSelf)
+            {
+                shieldTimer.SetActive(true);
+            }
+        }
+
+        void UpdateShieldsAmountText()
         {
             //Shields Number
-            shieldAmountText.text = shieldAmount.ToString();
+            shieldAmountText.text = String.Format("x{0}",shieldAmount.ToString());
         }
-        void UpdateUITimerText()
+        void UpdateShieldTimerText()
         {
-            shieldTimerText.text = String.Format("{0:1}", shieldRemainingTime.ToString());
-            UpdateUIBar();
-        }
-        void UpdateUIBar()
-        {
-            shieldTimerBar.fillAmount = GetTimerPercentage();
+            //Timer number
+            shieldTimerText.text = String.Format("{0:0}", shieldRemainingTime.ToString());
+
+            //Scale the bar depending on timer percentage
+            var shieldTimerScale = shieldTimerBar.transform.localScale;
+            shieldTimerScale.x = GetTimerPercentage();
         }
 
         private float GetTimerPercentage()
@@ -81,12 +106,21 @@ namespace CGJ.Mechanics
     #region Shield calls
         public void AddShield(int amount)
         {
+            bool hadNoShields = shieldAmount < 1;
+
             shieldAmount += amount;
+
+            if(hadNoShields) { ResetShieldTimer(); }
             UpdateShieldValue();
         }
         public void RemoveShield(int amount)
         {
+            //Don't remove if currently don't have any shield
+            bool hadNoShields = shieldAmount < 1;
+            if(hadNoShields) { return; }
+
             shieldAmount -= amount;
+            ResetShieldTimer();
             UpdateShieldValue();
         }
 
@@ -95,11 +129,13 @@ namespace CGJ.Mechanics
             //Update Health shield variable
             playerHealth.SetShieldValue(shieldAmount);
 
-            //Reset Shield timer
-            shieldRemainingTime = shieldTemporaryTime;
-            
             //Update shield UI
             UpdateAllShieldUI();
+        }
+
+        private void ResetShieldTimer()
+        {
+            shieldRemainingTime = shieldTemporaryTime;
         }
     #endregion
     }

@@ -71,10 +71,13 @@ namespace CGJ.Characters
 
         public void LaughEvil()
         {
-            if(evilLaughSounds == null) { return; }
+            if(evilLaughSounds.Length < 1) { return; }
 
-            var randomEvilLaugh = evilLaughSounds[Random.Range(0, evilLaughSounds.Length)];
+            // Play a random laugh sound
+            var randomEvilLaugh = evilLaughSounds[Random.Range(0, evilLaughSounds.Length - 1)];
             audioSource.PlayOneShot(randomEvilLaugh);
+
+            // Find a new laugh time and wait for timer to laugh again
             ChooseRandomLaughTimer();
         }
 

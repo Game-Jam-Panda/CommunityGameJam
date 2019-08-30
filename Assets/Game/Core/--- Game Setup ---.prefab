@@ -150,6 +150,46 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3, type: 3}
 --- !u!224 &8457958527242763537 stripped
@@ -194,6 +234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8748400910468542578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9069631671770001843, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 339280379885502913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7455186537757557362 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
@@ -297,21 +343,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
-        type: 3}
-      propertyPath: hearts.Array.data[0]
-      value: 
-      objectReference: {fileID: 6873181630229668101}
-    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
-        type: 3}
-      propertyPath: hearts.Array.data[1]
-      value: 
-      objectReference: {fileID: 8036065132814516501}
-    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
-        type: 3}
-      propertyPath: hearts.Array.data[2]
-      value: 
-      objectReference: {fileID: 564252560126464956}
     - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
         type: 3}
       propertyPath: shieldTimerBar
@@ -327,6 +358,31 @@ PrefabInstance:
       propertyPath: shieldTimerText
       value: 
       objectReference: {fileID: 984049436233993089}
+    - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: shieldBarUI
+      value: 
+      objectReference: {fileID: 8748400910468542578}
+    - target: {fileID: 5485677149149442252, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: shieldTimer
+      value: 
+      objectReference: {fileID: 8748400910468542578}
+    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6873181630229668101}
+    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 8036065132814516501}
+    - target: {fileID: 2496396541745737261, guid: 4b65f63d78612fd48a9eb733573b4bd2,
+        type: 3}
+      propertyPath: hearts.Array.data[2]
+      value: 
+      objectReference: {fileID: 564252560126464956}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b65f63d78612fd48a9eb733573b4bd2, type: 3}
 --- !u!4 &385799860140178206 stripped

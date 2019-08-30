@@ -24,6 +24,7 @@ namespace CGJ.System
             systems.checkpointSystem = gameObject.AddComponent<CheckpointSystem>();
             systems.soundManager = gameObject.AddComponent<SoundManager>();
             systems.uiManager = gameObject.AddComponent<UIManager>();
+            systems.pickupSystem = gameObject.AddComponent<PickupSystem>();
 
             //Get systems
             systems.soundManager = FindObjectOfType<SoundManager>();
@@ -42,5 +43,6 @@ namespace CGJ.System
         public MusicManager musicManager { get; set; }
         public SoundManager soundManager { get; set; }
         public NarratorSystem narratorSystem { get; set; }
+        public PickupSystem pickupSystem { get; set; }
     }
 }
