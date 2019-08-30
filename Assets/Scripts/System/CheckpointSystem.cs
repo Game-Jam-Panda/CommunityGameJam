@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using CGJ.Core;
+using CGJ.Events;
 using CGJ.Movement;
 using UnityEngine;
 
@@ -18,14 +19,6 @@ namespace CGJ.System
 
         public event Action onCheckpointUpdate;
 
-        void Awake()
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-            cam = Camera.main;
-            
-            
-        }
-
         public void UpdateCheckpoint(Checkpoint newCheckpoint)
         {
             // Update reference of last checkpoint
@@ -36,6 +29,8 @@ namespace CGJ.System
 
         public void RespawnToLastCheckpoint()
         {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            var cam = Camera.main;
             var playerMovement = player.GetComponent<CharacterMovement>();
             var playerHealth = player.GetComponent<HealthSystem>();
 

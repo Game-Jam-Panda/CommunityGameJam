@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using CGJ.System;
 using UnityEngine;
 
-namespace CGJ.Core
+namespace CGJ.Events
 {
-    public class Checkpoint : MonoBehaviour
+    public class Checkpoint : Trigger
     {
         [Header("Checkpoint Update")]
+        [SerializeField] bool showCheckpointMessage = true;
         [SerializeField] Light lanternLight = null;
         [SerializeField] AudioClip checkpointUpdateSE = null;
 
@@ -19,20 +20,22 @@ namespace CGJ.Core
 
         private void OnTriggerEnter(Collider col)
         {
-            // When the player enters checkpoint's collider
             if(col.tag == "Player")
             {
+                //Update latest checkpoint to this one
                 SystemManager.systems.checkpointSystem.UpdateCheckpoint(this);
 
                 // Play checkpoint update Sound Effect
                 if (checkpointUpdateSE != null) { SystemManager.systems.soundManager.PlaySound(checkpointUpdateSE); }
-
-                //Turn on checkpoint Light
+                // Turn on checkpoint Light
                 if(lanternLight != null) { lanternLight.enabled = true; }
 
-                //Disable this checkpoint's collider
-                var checkpointCollider = GetComponent<BoxCollider>();
-                checkpointCollider.enabled = false;
+
+                //Disable this trigger's collider if enabled
+                if(oneTimeTrigger)
+                {
+                    triggerCollider.enabled = false;
+                }
             }
         }
     }

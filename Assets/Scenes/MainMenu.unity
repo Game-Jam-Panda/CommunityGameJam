@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 3c5a7602517673647a3f6727ba7997e5,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4267,8 +4267,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGame: {fileID: 1539702187}
-  sceneToLoadOnStartGame: 3
+  sceneIndexToLoadOnStartGame: 2
   quit: {fileID: 1200710509}
+  buttonClickSE: {fileID: 0}
 --- !u!1001 &1453319761
 PrefabInstance:
   m_ObjectHideFlags: 0

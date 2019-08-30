@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3235207499062702419}
   - component: {fileID: 8123418299563415266}
   m_Layer: 9
-  m_Name: hit_particle
+  m_Name: player_hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

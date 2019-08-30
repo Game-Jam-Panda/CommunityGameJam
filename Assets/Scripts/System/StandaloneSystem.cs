@@ -26,8 +26,9 @@ namespace CGJ.System
             systems.uiManager = gameObject.AddComponent<UIManager>();
 
             //Get systems
-            systems.narratorSystem = FindObjectOfType<NarratorSystem>();
             systems.soundManager = FindObjectOfType<SoundManager>();
+            systems.musicManager = FindObjectOfType<MusicManager>();
+            systems.narratorSystem = FindObjectOfType<NarratorSystem>();
             yield return null;
         }
     }
@@ -38,6 +39,7 @@ namespace CGJ.System
         public CGJEventsSystem eventsSystem { get; set; }
         public UIManager uiManager { get; set; }
         public CheckpointSystem checkpointSystem { get; set; }
+        public MusicManager musicManager { get; set; }
         public SoundManager soundManager { get; set; }
         public NarratorSystem narratorSystem { get; set; }
     }

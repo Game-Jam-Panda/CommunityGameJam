@@ -28,6 +28,8 @@ namespace CGJ.System
     #region Scene loading
         public void LoadSceneByIndex(int sceneToLoad)
         {
+            if(sceneToLoad > SceneManager.sceneCountInBuildSettings - 1 || sceneToLoad < 0) { Debug.LogError("Trying to load an invalid scene."); return;}
+
             //Update scenes index references
             UpdateCurrentSceneValue();
             this.sceneToLoad = sceneToLoad;
@@ -37,6 +39,8 @@ namespace CGJ.System
 
         public void LoadNextScene()
         {
+            if(sceneToLoad > SceneManager.sceneCountInBuildSettings - 1 || sceneToLoad < 0) { Debug.LogError("Trying to load an invalid scene."); return;}
+            
             //Update scenes index references
             UpdateCurrentSceneValue();
             sceneToLoad = GetCurrentSceneIndex() + 1;

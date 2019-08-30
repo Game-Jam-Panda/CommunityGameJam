@@ -19,6 +19,11 @@ namespace CGJ.Movement
         bool controlsBlocked = false;
         bool frozen = false;
 
+        // Animator
+        Animator anim;
+        const string ANIM_FORWARD = "forward";
+        const string ANIM_GROUNDED = "grounded";
+
         [Header("Knockback settings")]
         [SerializeField] float yKnockbackForce = 0.0f;
 
@@ -75,17 +80,18 @@ namespace CGJ.Movement
             rb = GetComponent<Rigidbody>();
             col = GetComponent<CapsuleCollider>();
             characterHealth = GetComponent<HealthSystem>();
+            anim = GetComponent<Animator>();
             cam = Camera.main;
         }
 
         void Update()
         {
+            //UpdateAnimator();
+            
             if(controlsBlocked) { return; }
-
             ProcessMovementInput();
 
             if(frozen) {return; }
-
             ProcessJump();
         }
         void FixedUpdate()
@@ -206,6 +212,15 @@ namespace CGJ.Movement
             yield return new WaitForSeconds(time);
             frozen = false;
         }
+#endregion
+
+#region Animator
+
+    void UpdateAnimator()
+    {
+        anim.SetFloat(ANIM_FORWARD, InputX);
+        anim.SetBool(ANIM_GROUNDED, grounded);
+    }
 #endregion
 
 #region Jump mechanic

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Button startGame;
-    [SerializeField] int sceneToLoadOnStartGame = 3;
+    [SerializeField] int sceneIndexToLoadOnStartGame = 2;
     [SerializeField] Button quit;
 
     [Header("Sound Effects")]
@@ -32,6 +32,6 @@ public class MainMenuManager : MonoBehaviour
     {
         SystemManager.systems.soundManager.PlaySound(buttonClickSE);
 
-        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(sceneToLoadOnStartGame);
+        SystemManager.systems.sceneLoadingSystem.LoadSceneByIndex(sceneIndexToLoadOnStartGame);
     }
 }

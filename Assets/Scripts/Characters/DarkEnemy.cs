@@ -1,13 +1,98 @@
+using System.Collections;
 using UnityEngine;
 
 namespace CGJ.Characters
 {
+    [RequireComponent(typeof(AudioSource))]
     public class DarkEnemy : MonoBehaviour
     {
-        public void Consume()
+        [Header("Consume")]
+        [SerializeField] GameObject consumeEffect = null;
+        [SerializeField] AudioClip consumeSound = null;
+        [SerializeField] float secondsToDisappear = 1.0f;
+        AudioSource audioSource = null;
+
+        [Header("Laugh")]
+        [SerializeField] AudioClip[] evilLaughSounds = null;
+        [SerializeField] float minLaughTimer = 2.0f;
+        [SerializeField] float maxLaughTimer = 10.0f;
+        float laughTimer = 0.0f;
+        float elapsedLaughTime = 0.0f;
+
+        void Awake()
         {
-            //TODO consume the enemy
-            print("Enemy consummed: " + gameObject.name);
+            audioSource = GetComponent<AudioSource>();
         }
+
+        void Start()
+        {
+            ChooseRandomLaughTimer();
+        }
+
+        void Update()
+        {
+            if(evilLaughSounds == null) { return; }
+
+            ProcessRandomLaugh();
+        }
+
+    #region Consume
+
+        public IEnumerator Consume()
+        {
+            //Spawn consume effect
+            Instantiate(consumeEffect, transform.position, Quaternion.identity);
+
+            //Play consume sound
+            PlayConsumedSound();
+
+            // Destroy the enemy after consume time
+            yield return new WaitForSeconds(secondsToDisappear);
+            Destroy(gameObject);
+        }
+
+        public IEnumerator ConsumeWithoutSound()
+        {
+            //Spawn consume effect
+            Instantiate(consumeEffect, transform.position, Quaternion.identity);
+
+            // Destroy the enemy after consume time
+            yield return new WaitForSeconds(secondsToDisappear);
+            Destroy(gameObject);
+        }
+
+        public void PlayConsumedSound()
+        {
+            audioSource.PlayOneShot(consumeSound);
+        }
+    #endregion
+
+    #region Laugh
+
+        public void LaughEvil()
+        {
+            if(evilLaughSounds == null) { return; }
+
+            var randomEvilLaugh = evilLaughSounds[Random.Range(0, evilLaughSounds.Length)];
+            audioSource.PlayOneShot(randomEvilLaugh);
+            ChooseRandomLaughTimer();
+        }
+
+        void ProcessRandomLaugh()
+        {
+            if(elapsedLaughTime < laughTimer)
+            {
+                elapsedLaughTime += Time.deltaTime;
+                return;
+            }
+
+            LaughEvil();
+        }
+
+        void ChooseRandomLaughTimer()
+        {
+            laughTimer = Random.Range(minLaughTimer, maxLaughTimer);
+        }
+    #endregion
     }
 }
