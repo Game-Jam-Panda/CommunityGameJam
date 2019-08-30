@@ -19,6 +19,9 @@ namespace CGJ.Mechanics
         [SerializeField] float shieldTemporaryTime = 5.0f;
         float shieldRemainingTime = 0.0f;
 
+        [Header("Shield Visual")]
+        [SerializeField] GameObject shieldModel = null;
+
         //Shield values
         int shieldAmount = 0;
 
@@ -33,28 +36,30 @@ namespace CGJ.Mechanics
         
         void Start()
         {
+            if(shieldModel.activeSelf) { shieldModel.SetActive(false); }    //Safety-check to disable the model at the beginning
+
             UpdateAllShieldUI();
         }
 
         void Update()
         {
-            // Bar visibility
-            if(shieldAmount > 0)
-            { ShowTimerBar(); }
-            else
-            { HideTimerBar(); }
+            HandleBarVisibility();
+            ProcessShieldFunctionnality();
 
-            if(Input.GetKeyDown(KeyCode.F)){ AddShield(1); }   //Simulate shield pickup //TODO REMOVE
+            if (Input.GetKeyDown(KeyCode.F)) { AddShield(1); }   //Simulate shield pickup //TODO REMOVE
+        }
 
+        void ProcessShieldFunctionnality()
+        {
             // Reduce shield timer as long you you have a shield
-            if(shieldAmount > 0 && shieldRemainingTime > 0)
+            if (shieldAmount > 0 && shieldRemainingTime > 0)
             {
                 shieldRemainingTime -= Time.deltaTime;
                 UpdateShieldTimerText();
                 return;
             }
 
-            if(shieldRemainingTime <= 0)
+            if (shieldRemainingTime <= 0)
             {
                 shieldRemainingTime = 0.0f;
 
@@ -63,7 +68,21 @@ namespace CGJ.Mechanics
             }
         }
 
-    #region Shield UI
+        #region Shield UI
+
+        void HandleBarVisibility()
+        {
+            if(shieldAmount > 0)
+            {
+                ShowTimerBar();
+                ShowShieldModel();
+            }
+            else
+            {
+                HideTimerBar();
+                HideShieldModel();
+            }
+        }
 
         void UpdateAllShieldUI()
         {
@@ -71,20 +90,12 @@ namespace CGJ.Mechanics
             UpdateShieldTimerText();
         }
 
-        void HideTimerBar()
-        {
-            if(shieldTimer.activeSelf)
-            {
-                shieldTimer.SetActive(false);
-            }
-        }
-        void ShowTimerBar()
-        {
-            if(!shieldTimer.activeSelf)
-            {
-                shieldTimer.SetActive(true);
-            }
-        }
+        // Timer bar visiblity
+        void HideTimerBar() { if(shieldTimer.activeSelf) { shieldTimer.SetActive(false); } }
+        void HideShieldModel() { if(shieldModel.activeSelf) { shieldModel.SetActive(false); } }
+        // Model visibility
+        void ShowTimerBar() { if(!shieldTimer.activeSelf) { shieldTimer.SetActive(true); } }
+        void ShowShieldModel() { if(!shieldModel.activeSelf) { shieldModel.SetActive(true); } }
 
         void UpdateShieldsAmountText()
         {
@@ -94,8 +105,9 @@ namespace CGJ.Mechanics
         void UpdateShieldTimerText()
         {
             //Timer number
-            shieldTimerText.text = String.Format("{0}", shieldRemainingTime.ToString());
+            shieldTimerText.text = String.Format("{0:1}", shieldRemainingTime.ToString());
 
+            //TODO Fix
             //Scale the bar depending on timer percentage
             var shieldTimerScale = shieldTimerBar.transform.localScale;
             shieldTimerScale.x = GetTimerPercentage();

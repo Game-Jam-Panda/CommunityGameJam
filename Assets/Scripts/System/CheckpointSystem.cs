@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using CGJ.Core;
 using CGJ.Events;
 using CGJ.Movement;
+using CGJ.Pickups;
 using UnityEngine;
 
 namespace CGJ.System
@@ -11,6 +13,8 @@ namespace CGJ.System
     {
         [Header("Respawn")]
         [SerializeField] float respawnFreezeCooldown = 0.2f;
+
+        List<Pickup> pickupsThatCanBeLoaded = new List<Pickup>();
 
         Checkpoint lastCheckpoint = null;
 
@@ -24,7 +28,24 @@ namespace CGJ.System
             // Update reference of last checkpoint
             lastCheckpoint = newCheckpoint;
 
+            // Save used pickups so that they don't respawn
+            SaveUnusedPickups();
+
             onCheckpointUpdate?.Invoke();
+        }
+
+        void SaveUnusedPickups()
+        {
+            var pickups = GameObject.FindObjectsOfType<Pickup>();
+
+            foreach(Pickup pickup in pickups)
+            {
+                // Avoid loading pickups that were triggered before the checkpoint
+                if(!pickup.WasTriggered())
+                {
+                    pickupsThatCanBeLoaded.Add(pickup);
+                }
+            }
         }
 
         public void RespawnToLastCheckpoint()
@@ -46,10 +67,23 @@ namespace CGJ.System
             //Restore health
             playerHealth.RestoreHealth();
 
+            //TODO re-enable pickups
+            RestoreSavedPickups();
             StartCoroutine(RestorePlayerControls(playerMovement));
         }
 
-        public IEnumerator RestorePlayerControls(CharacterMovement playerMovement)
+        void RestoreSavedPickups()
+        {
+            foreach(Pickup pickup in pickupsThatCanBeLoaded)
+            {
+                if(pickup.enabled) { continue; }
+                
+                pickup.SetWasTriggered(false);
+                pickup.gameObject.SetActive(true);
+            }
+        }
+
+        IEnumerator RestorePlayerControls(CharacterMovement playerMovement)
         {
             // Unfreeze after cd
             yield return new WaitForSeconds(respawnFreezeCooldown);
