@@ -4117,6 +4117,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24300002, guid: 237e3bf4b451e407184caf59aeec22df,
         type: 2}
+    - target: {fileID: 709355541481880392, guid: 0b11c246f410f574082a0da3720d8f4e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ddbd19e46f154432792c73453c02b3d4, type: 3}
+    - target: {fileID: 709355541481880392, guid: 0b11c246f410f574082a0da3720d8f4e,
+        type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 709355541481880392, guid: 0b11c246f410f574082a0da3720d8f4e,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709355541481880392, guid: 0b11c246f410f574082a0da3720d8f4e,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b11c246f410f574082a0da3720d8f4e, type: 3}
 --- !u!43 &1225670686
