@@ -36,11 +36,13 @@ namespace CGJ.System
 
         void SaveUnusedPickups()
         {
-            var pickups = GameObject.FindObjectsOfType<Pickup>();
+            // Clear the saved pickup list
+            pickupsThatCanBeLoaded.Clear();
 
+            // Save all pickups that aren't picked up ahead of the new checkpoint
+            var pickups = GameObject.FindObjectsOfType<Pickup>();
             foreach(Pickup pickup in pickups)
             {
-                // Avoid loading pickups that were triggered before the checkpoint
                 if(!pickup.WasTriggered())
                 {
                     pickupsThatCanBeLoaded.Add(pickup);
@@ -76,7 +78,7 @@ namespace CGJ.System
         {
             foreach(Pickup pickup in pickupsThatCanBeLoaded)
             {
-                if(pickup.enabled) { continue; }
+                //if(pickup.enabled) { continue; }
 
                 pickup.SetWasTriggered(false);
                 pickup.gameObject.SetActive(true);
