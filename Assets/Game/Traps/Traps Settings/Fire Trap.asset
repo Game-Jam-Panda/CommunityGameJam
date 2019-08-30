@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapType: 1
   instantKill: 1
-  damage: 1
+  damage: 2
   collisionParticle: {fileID: 1591823490678448535, guid: 0ad742cd4eba33343ac9a25ffc3e808a,
     type: 3}
   trapHitEffect: {fileID: 0}

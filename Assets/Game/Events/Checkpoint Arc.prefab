@@ -138,6 +138,11 @@ PrefabInstance:
       propertyPath: lanternLight
       value: 
       objectReference: {fileID: 1448049329650931644}
+    - target: {fileID: 6273297212973485446, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41,
+        type: 3}
+      propertyPath: checkpointUpdateSE
+      value: 
+      objectReference: {fileID: 8300000, guid: f9239d85a133c465fa245c04dac9fe28, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41, type: 3}
 --- !u!4 &576235879445347681 stripped
