@@ -9,5 +9,6 @@
         SoundManager soundManager { get; set; }
         MusicManager musicManager { get; set; }
         NarratorSystem narratorSystem { get; set; }
+        PickupSystem pickupSystem { get; set; }
     }
 }

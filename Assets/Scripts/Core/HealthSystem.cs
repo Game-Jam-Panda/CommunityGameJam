@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using CGJ.Movement;
 using CGJ.System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +22,7 @@ namespace CGJ.Core
         bool alive = true;
 
         //[Header("Shield")]
-        int shieldedHealth = 0;
+        int currentShieldsAmount = 0;
 
         [Header("Damage settings")]
         [SerializeField] AudioClip[] damageSFXArray;
@@ -47,7 +46,7 @@ namespace CGJ.Core
         public int GetCurrentHealth() { return currentHealth; }
 
         //Shield - Setters
-        public void SetShieldValue(int shieldValue) { shieldedHealth = shieldValue; }
+        public void SetShieldValue(int shieldValue) { currentShieldsAmount = shieldValue; }
 
         void Start()
         {
@@ -96,9 +95,9 @@ namespace CGJ.Core
             if(!alive) { return; }
 
             // Possibly Shield from damage
-            if(shieldedHealth >= 1) 
+            if(currentShieldsAmount >= 1) 
             {
-                shieldedHealth -= 1;
+                currentShieldsAmount -= 1;
                 return;
             }
             
