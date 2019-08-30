@@ -56,6 +56,8 @@ namespace CGJ.Mechanics
 
             if(shieldRemainingTime <= 0)
             {
+                shieldRemainingTime = 0.0f;
+
                 // Remove 1 shield after the timer expires
                 RemoveShield(1);
             }
@@ -92,7 +94,7 @@ namespace CGJ.Mechanics
         void UpdateShieldTimerText()
         {
             //Timer number
-            shieldTimerText.text = String.Format("{0:0}", shieldRemainingTime.ToString());
+            shieldTimerText.text = String.Format("{0}", shieldRemainingTime.ToString());
 
             //Scale the bar depending on timer percentage
             var shieldTimerScale = shieldTimerBar.transform.localScale;
