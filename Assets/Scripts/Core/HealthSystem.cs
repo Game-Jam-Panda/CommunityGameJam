@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using CGJ.Movement;
 using CGJ.System;
 using UnityEngine;
 using UnityEngine.UI;

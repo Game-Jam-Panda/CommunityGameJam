@@ -24,6 +24,8 @@ namespace CGJ.Mechanics
 
         HealthSystem playerHealth;
 
+        public int GetShieldAmount() { return shieldAmount; }
+
         void Awake()
         {
             playerHealth = GetComponent<HealthSystem>();
