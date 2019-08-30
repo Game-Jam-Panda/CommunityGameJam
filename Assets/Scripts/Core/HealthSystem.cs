@@ -18,7 +18,6 @@ namespace CGJ.Core
         [Header("Health")]
         [SerializeField] int maxHearts = 3;
         int currentHealth = 3;
-        
         bool alive = true;
 
         //[Header("Shield")]
@@ -30,16 +29,23 @@ namespace CGJ.Core
         [Header("Death")]
         [SerializeField] float deathTime = 1.0f;
         
+        //Animator
+        const string ANIM_ALIVE = "alive";
+        Animator anim = null;
         AudioSource audioSource = null;
 
         public event Action onHealthChange;
         public event Action onDeath;
     
         // Delegate Subscription
-        void OnEnable()
-        { onHealthChange += UpdateHealthUI; }
-        void OnDisable()
-        { onHealthChange -= UpdateHealthUI; }
+        void OnEnable(){
+            onHealthChange += UpdateHealthUI;
+            onHealthChange += UpdateAnimator;
+        }
+        void OnDisable(){
+            onHealthChange -= UpdateHealthUI;
+            onHealthChange -= UpdateAnimator;
+        }
 
         //Health
         public int GetMaxHearts() { return maxHearts; }
@@ -50,6 +56,7 @@ namespace CGJ.Core
 
         void Start()
         {
+            anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
 
             // Setup health on start
@@ -68,6 +75,13 @@ namespace CGJ.Core
             DamageTesting();
         }
     
+    #region Animations
+        void UpdateAnimator()
+        {
+            anim.SetBool(ANIM_ALIVE, alive);
+        }
+    #endregion
+
     #region Health UI
         void UpdateHealthUI()
         {

@@ -13,7 +13,10 @@ namespace CGJ.Pickups
             if(col.tag == "Player" && col.gameObject.GetComponent<ShieldMechanic>())
             {
                 SystemManager.systems.pickupSystem.Pickup(col.gameObject, pickupConfig.GetPickupType(), pickupConfig.GetPickupSound());
-                Destroy(gameObject);
+
+                //Disable the object once triggered
+                triggered = true;
+                gameObject.SetActive(false);
             }
         }
     }
