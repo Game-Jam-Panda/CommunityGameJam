@@ -46,7 +46,7 @@ namespace CGJ.Mechanics
 
             if(Input.GetKeyDown(KeyCode.F)){ AddShield(1); }   //Simulate shield pickup //TODO REMOVE
 
-            // Reduce shield timer timer as long you you have a shield
+            // Reduce shield timer as long you you have a shield
             if(shieldAmount > 0 && shieldRemainingTime > 0)
             {
                 shieldRemainingTime -= Time.deltaTime;
@@ -101,7 +101,7 @@ namespace CGJ.Mechanics
 
         private float GetTimerPercentage()
         {
-            return  (shieldRemainingTime/shieldTemporaryTime) / 100;
+            return (shieldRemainingTime/shieldTemporaryTime) / 100;
         }
     #endregion
 
