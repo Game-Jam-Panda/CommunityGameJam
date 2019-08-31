@@ -4,7 +4,7 @@ using CGJ.Events;
 using CGJ.System;
 using UnityEngine;
 
-namespace CGJ.Core
+namespace CGJ.CGJ.ScenesManagement
 {
     public class Portal : Trigger
     {

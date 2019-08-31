@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9a63c4179bd67c1479f88c8e2af14e10
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Think Dreams
+  fontNames:
+  - Think Dreams
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 045ba00f38441a24b9573731a8fe8a3d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
