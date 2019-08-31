@@ -23,16 +23,16 @@ namespace CGJ.System
             managerAudioSource.playOnAwake = false;
         }
 
-        public void PlaySound(AudioClip audioClip)
+        public void PlaySound(AudioClip audioClip, float volume = 1.0f)
         {
-            managerAudioSource.PlayOneShot(audioClip);
+            managerAudioSource.PlayOneShot(audioClip, volume);
         }
 
-        public void PlayRandomSound(AudioClip[] sounds)
+        public void PlayRandomSound(AudioClip[] sounds, float volume = 1.0f)
         {
             var randomSound = sounds[UnityEngine.Random.Range(0, sounds.Length)];
 
-            managerAudioSource.PlayOneShot(randomSound);
+            managerAudioSource.PlayOneShot(randomSound, volume);
         }
     }
 }

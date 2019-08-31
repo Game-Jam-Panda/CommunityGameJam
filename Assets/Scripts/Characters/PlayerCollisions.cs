@@ -11,6 +11,7 @@ namespace CGJ.Characters
     {
         [SerializeField] bool debug = false;    //TODO Remove variable
         [SerializeField] GameObject playerHitParticle = null;
+        [SerializeField] Transform hitSpawnpoint = null;
 
         HealthSystem playerHealth = null;
         CharacterMovement playerMovement = null;
@@ -60,7 +61,10 @@ namespace CGJ.Characters
 
                     //*** Collision effect ***//
                     SpawnTrapCollisionParticleByContact(contactPoint, contactPointNormal, trapConfig);
-                    SpawnPlayerHitParticle(trapConfig);
+                    SpawnTrapHitParticle(trapConfig);
+
+                    //*** Player Hit effect ***//
+
 
                     //***TRAPS SPECIFIC LOGIC***// Call trap-specific code
                     switch (trapType)
@@ -100,12 +104,19 @@ namespace CGJ.Characters
             trapConfig.SpawnAtContact(trapConfig.GetCollisionParticle(), contactPoint, contactPointNormal);
         }
 
-        void SpawnPlayerHitParticle(TrapConfig trapConfig)
+        void SpawnTrapHitParticle(TrapConfig trapConfig)
         {
             var hitParticle = trapConfig.GetTrapHitEffect();
             if(hitParticle == null) { return; }
 
             Instantiate(hitParticle, transform.position, Quaternion.identity);
+        }
+
+        void SpawnPlayerHitParticle()
+        {
+            if(playerHitParticle == null) { return; }
+
+            Instantiate(playerHitParticle, hitSpawnpoint.position, Quaternion.identity);
         }
     }
 }

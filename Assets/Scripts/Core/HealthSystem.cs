@@ -15,7 +15,6 @@ namespace CGJ.Core
         [SerializeField] Sprite fullHeart;
         [SerializeField] Sprite emptyHeart;
     
-        //TODO Remove exposure
         [Header("Health")]
         [SerializeField] int maxHearts = 3;
         int currentHealth = 3;
@@ -73,9 +72,6 @@ namespace CGJ.Core
             {
                currentHealth = maxHearts;
             }
-
-            //TODO REMOVE AFTER FINISHING TESTS 
-            DamageTesting();
         }
     
     #region Animations
@@ -173,23 +169,6 @@ namespace CGJ.Core
             // Wait for death time and respawn to last checkpoint
             yield return new WaitForSeconds(deathTime);
             SystemManager.systems.checkpointSystem.RespawnToLastCheckpoint();
-        }
-
-        //TODO REMOVE AFTER FINISHING TESTS
-        void DamageTesting()
-        {
-            if(Input.GetKeyDown(KeyCode.R))
-            {
-                TakeDamage(1);
-            }
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                Heal(1);
-            }
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                TakeDamage(maxHearts);
-            }
         }
     #endregion
     }
