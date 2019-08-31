@@ -46,8 +46,8 @@ namespace CGJ.Movement
         [SerializeField] float groundedCheckDistance = 0.1f;
         bool grounded = true;
 
-        [Header("Landing settings")]
-        [SerializeField] AudioClip[] landSounds;
+        // [Header("Landing settings")]
+        // [SerializeField] AudioClip[] landSounds;
         
         //Input
         float InputX = 0.0f;
@@ -320,11 +320,5 @@ namespace CGJ.Movement
             );
         }
 #endregion
-
-        void OnCollisionEnter(Collision collision) {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("Default")) {
-                GetComponent<AudioSource>().PlayOneShot(landSounds[UnityEngine.Random.Range(0, landSounds.Length)]);
-            }
-        }
     }
 }
