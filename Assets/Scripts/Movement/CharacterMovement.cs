@@ -40,6 +40,9 @@ namespace CGJ.Movement
         [SerializeField] float fallingSpeedLimit = 8f;
         [SerializeField] float fallingVelocityTreshhold = 8.61f;
 
+        [Header("Land settings")]
+        [SerializeField] AudioClip[] landSounds;
+
         [Header("Grounded settings")]
         [SerializeField] LayerMask groundedLayers;
         [SerializeField] Transform groundedCheckSource = null;
@@ -303,5 +306,12 @@ namespace CGJ.Movement
             );
         }
 #endregion
+
+        void OnCollisionEnter(Collision collision) {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Default")) {
+                GetComponent<AudioSource>().PlayOneShot(landSounds[UnityEngine.Random.Range(0, landSounds.Length)]);
+            }
+        }
+
     }
 }
