@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.284733, g: 0.37129852, b: 0.4982393, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50,7 +50,7 @@ LightmapSettings:
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 2
+    m_MixedBakeMode: 1
     m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
@@ -96,9 +96,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 112000000, guid: 3c5a7602517673647a3f6727ba7997e5,
+  m_LightingDataAsset: {fileID: 112000000, guid: f92cab9371b1dfb42931a223f4309050,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1164,21 +1164,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.5431
       objectReference: {fileID: 0}
-    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.074
-      objectReference: {fileID: 0}
-    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.465
-      objectReference: {fileID: 0}
-    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.313
-      objectReference: {fileID: 0}
     - target: {fileID: 2348468191222047019, guid: 47acb6e8d3e191a4090601e2d8f82956,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -1353,6 +1338,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.074
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.465
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583462914514941866, guid: 47acb6e8d3e191a4090601e2d8f82956,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.313
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2348468192429864820, guid: 47acb6e8d3e191a4090601e2d8f82956, type: 3}
@@ -3587,16 +3587,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.41272998
       objectReference: {fileID: 0}
-    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
-        type: 3}
-      propertyPath: m_Range
-      value: 5.5328493
-      objectReference: {fileID: 0}
-    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
-        type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2923304955153806085, guid: 597bebfc000bd2247a34fc6429385570,
         type: 3}
       propertyPath: flickerTimes
@@ -3611,6 +3601,16 @@ PrefabInstance:
         type: 3}
       propertyPath: flickerFrequency
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
+        type: 3}
+      propertyPath: m_Range
+      value: 5.5328493
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2923304955153806085, guid: 597bebfc000bd2247a34fc6429385570, type: 3}
