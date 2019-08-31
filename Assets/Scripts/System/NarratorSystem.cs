@@ -17,14 +17,7 @@ namespace CGJ.System
         void Awake()
         {
             // Reference Narrator AudioSource
-            if(narratorAudiosource == null)
-            { 
-                narratorAudiosource = gameObject.AddComponent<AudioSource>();
-            }
-            else
-            {
-                narratorAudiosource = GetComponent<AudioSource>();
-            }
+            narratorAudiosource = GetComponent<AudioSource>();
 
             narratorAudiosource.playOnAwake = false;
         }

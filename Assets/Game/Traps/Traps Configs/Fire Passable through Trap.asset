@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14610eab588959043931bfb7bd0bc468, type: 3}
-  m_Name: Void Trap
+  m_Script: {fileID: 11500000, guid: 9d58db222655acd4da2ec1fa1627d9ac, type: 3}
+  m_Name: Fire Passable through Trap
   m_EditorClassIdentifier: 
-  trapType: 0
+  trapType: 1
   instantKill: 1
-  damage: 1
+  damage: 2
   collisionParticle: {fileID: 1591823490678448535, guid: 0ad742cd4eba33343ac9a25ffc3e808a,
     type: 3}
   trapHitEffect: {fileID: 0}
   knockbackEnabled: 0
-  hitKnockbackTime: 1
-  knockbackForceX: -2
-  knockbackForceY: -2
+  hitKnockbackTime: 0.3
+  knockbackForceX: 2
+  knockbackForceY: 2
