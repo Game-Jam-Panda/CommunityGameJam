@@ -12,7 +12,7 @@ namespace CGJ.System
     public class CheckpointSystem: MonoBehaviour
     {
         [Header("Respawn")]
-        [SerializeField] float respawnFreezeCooldown = 0.2f;
+        [SerializeField] float respawnFreezeCooldown = 0.5f;
 
         List<Pickup> pickupsThatCanBeLoaded = new List<Pickup>();
 

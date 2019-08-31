@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Pickup_Shield
   m_EditorClassIdentifier: 
   pickupType: 0
-  pickupSound: {fileID: 8300000, guid: bf542ad99cf706e4080698e57a10dcd1, type: 3}
+  pickupSound: {fileID: 8300000, guid: e9792d80ebccea54eadcf216f9fe3689, type: 3}

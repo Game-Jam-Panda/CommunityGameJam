@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 6221187890141279125
-    second: Armature|ArmatureAction.004
+    second: Run
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -55,7 +55,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction.004
+      name: Run
       takeName: Armature|ArmatureAction.004
       internalID: 0
       firstFrame: 0
@@ -90,7 +90,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    sortHierarchyByName: 0
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CGJ.Mechanics;
 using CGJ.System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ namespace CGJ.Core
         bool alive = true;
 
         //[Header("Shield")]
+        ShieldMechanic shieldMechanic = null;
         int currentShieldsAmount = 0;
 
         [Header("Damage settings")]
@@ -40,11 +42,9 @@ namespace CGJ.Core
         // Delegate Subscription
         void OnEnable(){
             onHealthChange += UpdateHealthUI;
-            onHealthChange += UpdateAnimator;
         }
         void OnDisable(){
             onHealthChange -= UpdateHealthUI;
-            onHealthChange -= UpdateAnimator;
         }
 
         //Health
@@ -58,6 +58,7 @@ namespace CGJ.Core
         {
             anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
+            shieldMechanic = GetComponent<ShieldMechanic>();
 
             // Setup health on start
             onHealthChange?.Invoke();
@@ -65,6 +66,8 @@ namespace CGJ.Core
     
         void Update()
         {
+            UpdateAnimator();
+
             //Make sure the current health doesn't exceed max hearts
             if(currentHealth > maxHearts)
             {
@@ -106,31 +109,42 @@ namespace CGJ.Core
     
         public void TakeDamage(int damage)
         {
-            if(!alive) { return; }
-
-            // Possibly Shield from damage
-            if(currentShieldsAmount >= 1) 
-            {
-                currentShieldsAmount -= 1;
-                return;
-            }
-            
-            int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
+            if (!alive) { return; }
 
             //Play random damage sound
             var randomDamageSFX = damageSFXArray[UnityEngine.Random.Range(0, damageSFXArray.Length)];
             audioSource.PlayOneShot(randomDamageSFX);
 
-            // Remove health
-            currentHealth = newHealth;
-            onHealthChange?.Invoke();
+            //New health stored value
+            int newHealth;
+
+            // Possibly Shield from damage
+            if (shieldMechanic.GetCurrentShieldsAmount() >= 1)
+            {
+                shieldMechanic.RemoveShield(1);
+                newHealth = RemoveHealth(damage - 1);
+            }
+            else
+            {
+                newHealth = RemoveHealth(damage);
+            }
 
             // Die
-            if(newHealth <= 0)
+            if (newHealth <= 0)
             {
                 StartCoroutine(Die()); return;
             }
         }
+
+        private int RemoveHealth(int damage)
+        {
+            // Remove health
+            int newHealth = Mathf.Clamp(currentHealth - damage, 0, maxHearts);
+            currentHealth = newHealth;
+            onHealthChange?.Invoke();
+            return newHealth;
+        }
+
         public void Heal(int healAmount)
         {
             if(!alive) { return; }

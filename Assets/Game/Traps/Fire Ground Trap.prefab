@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8626104909767208024
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5730940179693534852, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_Name
+      value: Fire Ground Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551027272439825593, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551027272439825593, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675246578386400319, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: trapConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: f5f34974cc619e240b44c8c7d4952faf,
+        type: 2}
+    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686791767827501829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2595054862009304829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190388362137743340, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701134767609473638, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701134767609473638, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea1000a7ebf4c124f8495fe2ba2e4d29, type: 3}

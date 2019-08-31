@@ -16,13 +16,17 @@ namespace CGJ.Movement
         [Header("Rotation settings")]
         [SerializeField] bool blockRotation = false;    //TODO Remove exposure
         [SerializeField] float rotationSpeed = 10.0f;
+        bool isMoving;
         bool controlsBlocked = false;
         bool frozen = false;
 
         // Animator
         Animator anim;
         const string ANIM_FORWARD = "forward";
+        const string ANIM_MOVING = "moving";
         const string ANIM_GROUNDED = "grounded";
+        const string ANIM_JUMP_TRIGGER = "jump";
+        const string ANIM_FALLING = "falling";
 
         [Header("Knockback settings")]
         [SerializeField] float yKnockbackForce = 0.0f;
@@ -103,7 +107,18 @@ namespace CGJ.Movement
 
             ProcessMovement();
         }
-        
+
+#region Animator
+
+    void UpdateAnimator()
+    {
+        anim.SetFloat(ANIM_FORWARD, inputMagnitudeClamped);
+        anim.SetBool(ANIM_MOVING, isMoving);
+        anim.SetBool(ANIM_GROUNDED, grounded);
+        anim.SetBool(ANIM_FALLING, isFalling);
+    }
+#endregion
+
 #region Knockback
         // Knockback
         public void Knockback(float freezeTime, float knockbackForceX, float knockbackForceY, Vector3 contactPointNormal)
@@ -154,7 +169,12 @@ namespace CGJ.Movement
             // Move if the magnitude has reached the allowed movement treshhold
             if (inputMagnitudeClamped > allowMovementTreshhold)
             {
+                isMoving = true;
                 RotateAndMove();
+            }
+            else
+            {
+                isMoving = false;
             }
         }
         
@@ -214,15 +234,6 @@ namespace CGJ.Movement
         }
 #endregion
 
-#region Animator
-
-    void UpdateAnimator()
-    {
-        anim.SetFloat(ANIM_FORWARD, InputX);
-        anim.SetBool(ANIM_GROUNDED, grounded);
-    }
-#endregion
-
 #region Jump mechanic
         void ProcessJump()
         {
@@ -236,6 +247,7 @@ namespace CGJ.Movement
                 if(rb.velocity.y > 0) { return; }
                 
                 // Initiate jump
+                anim.SetTrigger(ANIM_JUMP_TRIGGER);
                 Jump();
             }
 

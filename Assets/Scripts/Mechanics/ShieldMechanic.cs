@@ -23,11 +23,11 @@ namespace CGJ.Mechanics
         [SerializeField] GameObject shieldModel = null;
 
         //Shield values
-        int shieldAmount = 0;
+        int shieldsAmount = 0;
 
         HealthSystem playerHealth;
 
-        public int GetShieldAmount() { return shieldAmount; }
+        public int GetCurrentShieldsAmount() { return shieldsAmount; }
 
         void Awake()
         {
@@ -52,7 +52,7 @@ namespace CGJ.Mechanics
         void ProcessShieldFunctionnality()
         {
             // Reduce shield timer as long you you have a shield
-            if (shieldAmount > 0 && shieldRemainingTime > 0)
+            if (shieldsAmount > 0 && shieldRemainingTime > 0)
             {
                 shieldRemainingTime -= Time.deltaTime;
                 UpdateShieldTimerText();
@@ -72,7 +72,7 @@ namespace CGJ.Mechanics
 
         void HandleBarVisibility()
         {
-            if(shieldAmount > 0)
+            if(shieldsAmount > 0)
             {
                 ShowTimerBar();
                 ShowShieldModel();
@@ -100,7 +100,7 @@ namespace CGJ.Mechanics
         void UpdateShieldsAmountText()
         {
             //Shields Number
-            shieldAmountText.text = String.Format("x{0}",shieldAmount.ToString());
+            shieldAmountText.text = String.Format("x{0}",shieldsAmount.ToString());
         }
         void UpdateShieldTimerText()
         {
@@ -122,9 +122,9 @@ namespace CGJ.Mechanics
     #region Shield calls
         public void AddShield(int amount)
         {
-            bool hadNoShields = shieldAmount < 1;
+            bool hadNoShields = shieldsAmount < 1;
 
-            shieldAmount += amount;
+            shieldsAmount += amount;
 
             if(hadNoShields) { ResetShieldTimer(); }
             UpdateShieldValue();
@@ -132,10 +132,10 @@ namespace CGJ.Mechanics
         public void RemoveShield(int amount)
         {
             //Don't remove if currently don't have any shield
-            bool hadNoShields = shieldAmount < 1;
+            bool hadNoShields = shieldsAmount < 1;
             if(hadNoShields) { return; }
 
-            shieldAmount -= amount;
+            shieldsAmount -= amount;
             ResetShieldTimer();
             UpdateShieldValue();
         }
@@ -143,7 +143,7 @@ namespace CGJ.Mechanics
         private void UpdateShieldValue()
         {
             //Update Health shield variable
-            playerHealth.SetShieldValue(shieldAmount);
+            playerHealth.SetShieldValue(shieldsAmount);
 
             //Update shield UI
             UpdateAllShieldUI();
