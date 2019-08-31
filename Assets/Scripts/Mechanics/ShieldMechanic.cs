@@ -45,8 +45,6 @@ namespace CGJ.Mechanics
         {
             ProcessShieldFunctionnality();
             HandleBarVisibility();
-
-            if (Input.GetKeyDown(KeyCode.F)) { AddShield(1); }   //Simulate shield pickup //TODO REMOVE
         }
 
         void ProcessShieldFunctionnality()
