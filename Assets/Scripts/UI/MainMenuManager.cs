@@ -13,8 +13,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        startGame.onClick.AddListener(StartGame);
-        quit.onClick.AddListener(QuitGame);
+        if(startGame != null) { startGame.onClick.AddListener(StartGame); }
+        if(quit != null) { quit.onClick.AddListener(QuitGame); }
     }
 
     private void QuitGame()

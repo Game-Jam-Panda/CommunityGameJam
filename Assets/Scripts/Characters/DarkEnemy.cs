@@ -14,6 +14,8 @@ namespace CGJ.Characters
 
         //Animator
         const string ANIM_DEAD = "dead";
+        const string ANIM_MEDITATE = "meditate";
+        [SerializeField] bool meditateMode = false;
         Animator anim = null;
 
         [Header("Laugh")]
@@ -31,11 +33,22 @@ namespace CGJ.Characters
 
         void Start()
         {
+            if(meditateMode)
+            {
+                return;
+            }
+            
             ChooseRandomLaughTimer();
         }
 
         void Update()
         {
+            if(meditateMode)
+            {
+                anim.SetBool(ANIM_MEDITATE, true);
+                return;
+            }
+
             if(evilLaughSounds == null) { return; }
 
             ProcessRandomLaugh();

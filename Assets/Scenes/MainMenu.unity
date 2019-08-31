@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 3c5a7602517673647a3f6727ba7997e5,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2435,6 +2435,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.41272998
       objectReference: {fileID: 0}
+    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
+        type: 3}
+      propertyPath: m_Range
+      value: 5.5328493
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2923304955153806085, guid: 597bebfc000bd2247a34fc6429385570,
         type: 3}
       propertyPath: flickerTimes
@@ -2449,16 +2459,6 @@ PrefabInstance:
         type: 3}
       propertyPath: flickerFrequency
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
-        type: 3}
-      propertyPath: m_Range
-      value: 5.5328493
-      objectReference: {fileID: 0}
-    - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
-        type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 597bebfc000bd2247a34fc6429385570, type: 3}
@@ -4730,7 +4730,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600416195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -14}
+  m_LocalPosition: {x: 0, y: 0, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 927684760}
@@ -4738,7 +4738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -1}
+  m_AnchoredPosition: {x: 5, y: -14}
   m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600416197
@@ -4762,7 +4762,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 90a1de70b3e467d4eb7d7f886891745d, type: 3}
+    m_Font: {fileID: 12800000, guid: 8dff17f77e7d8cb4ba0574a710bba313, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -4774,7 +4774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ninja Panda
+  m_Text: Panda Spirit
 --- !u!222 &1600416198
 CanvasRenderer:
   m_ObjectHideFlags: 0
