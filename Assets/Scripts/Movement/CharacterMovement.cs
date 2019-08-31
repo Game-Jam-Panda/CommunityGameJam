@@ -86,7 +86,7 @@ namespace CGJ.Movement
 
         void Update()
         {
-            //UpdateAnimator();
+            UpdateAnimator();
             
             if(controlsBlocked) { return; }
             ProcessMovementInput();
