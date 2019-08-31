@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &757628346636511077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3726885686876373631}
-  m_Layer: 0
-  m_Name: NinjaPanda (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3726885686876373631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757628346636511077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1516846920588974939}
-  - {fileID: 6189760541900647886}
-  m_Father: {fileID: 2278766089349074142}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127674697059042706
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,40 +322,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3726885686876373631}
+  - {fileID: 6189760541900647886}
   m_Father: {fileID: 8446658304591325088}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6611993481116164888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1516846920588974939}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1516846920588974939
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: -8822504832033628785, guid: 0e6f3829f22467d43adb09611214ac88,
-    type: 3}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6611993481116164888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4004269272990718067}
-  m_Father: {fileID: 3726885686876373631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8337330596768108121
@@ -500,37 +436,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &8978394743978298725
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6189760541900647886}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6189760541900647886
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 0e6f3829f22467d43adb09611214ac88,
-    type: 3}
-  m_PrefabInstance: {fileID: 1197050015247107796}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8978394743978298725}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3726885686876373631}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9013810823872685877
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,10 +532,6 @@ MonoBehaviour:
   gravityMultiplier: 8
   fallingSpeedLimit: 30
   fallingVelocityTreshhold: 20
-  landSounds:
-  - {fileID: 8300000, guid: 9a6f45e1db485ad41a2bf9ce3d833994, type: 3}
-  - {fileID: 8300000, guid: 7ef0d4f510c9fed49b67086d771fadcd, type: 3}
-  - {fileID: 8300000, guid: 9635efafa65a7c64a85ec4c9cb1e7018, type: 3}
   groundedLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -910,6 +811,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -6057140222963153312, guid: 0e6f3829f22467d43adb09611214ac88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0e6f3829f22467d43adb09611214ac88, type: 3}
+--- !u!4 &1516846920588974939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8822504832033628785, guid: 0e6f3829f22467d43adb09611214ac88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1197050015247107796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6189760541900647886 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 0e6f3829f22467d43adb09611214ac88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1197050015247107796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2426007839970400869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -992,6 +905,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2635698919358676230}
     m_Modifications:
+    - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
+        type: 3}
+      propertyPath: m_Name
+      value: Dark Energy Aura
+      objectReference: {fileID: 0}
+    - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6527407804684413783, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1045,16 +968,6 @@ PrefabInstance:
     - target: {fileID: 6527407804684413783, guid: 4d710a02b6d877f47b7298bef0fbd881,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
-        type: 3}
-      propertyPath: m_Name
-      value: Dark Energy Aura
-      objectReference: {fileID: 0}
-    - target: {fileID: 672748250916739609, guid: 4d710a02b6d877f47b7298bef0fbd881,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6935935992131821252, guid: 4d710a02b6d877f47b7298bef0fbd881,
