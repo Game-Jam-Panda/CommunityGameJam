@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using CGJ.Core;
+using CGJ.System;
 using UnityEngine;
 
 namespace CGJ.Movement
@@ -9,16 +8,20 @@ namespace CGJ.Movement
     public class CharacterMovement : MonoBehaviour
     {
         [Header("Movement settings")]
-        [SerializeField] bool lockVerticalMovement = true;  //TODO Remove exposure
-        [SerializeField] bool blockMovement = false;
+        [SerializeField] bool lockVerticalMovement = true;
         [SerializeField] float moveSpeed = 6.0f;
         [SerializeField] float allowMovementTreshhold = 0.0f;
-        [Header("Rotation settings")]
-        [SerializeField] bool blockRotation = false;    //TODO Remove exposure
-        [SerializeField] float rotationSpeed = 10.0f;
+        [SerializeField] float footstepsVolume = 0.2f;
+        [SerializeField] AudioClip[] footstepSounds;
         bool isMoving;
+        bool blockMovement = false;
         bool controlsBlocked = false;
+        bool zMovementFrozen = true;
         bool frozen = false;
+
+        [Header("Rotation settings")]
+        [SerializeField] float rotationSpeed = 10.0f;
+        bool blockRotation = false;
 
         // Animator
         Animator anim;
@@ -28,23 +31,20 @@ namespace CGJ.Movement
         const string ANIM_JUMP_TRIGGER = "jump";
         const string ANIM_FALLING = "falling";
 
-        [Header("Knockback settings")]
-        [SerializeField] float yKnockbackForce = 0.0f;
-
         [Header("Jump settings")]
         [SerializeField] float jumpForce = 6.0f;
         [SerializeField] GameObject jumpDustParticle = null;
         [SerializeField] AudioClip[] jumpSounds;
-        [SerializeField] bool isFalling = false;    //TODO Remove exposure
         [SerializeField] float gravityMultiplier = 3.0f;
         [SerializeField] float fallingSpeedLimit = 8f;
         [SerializeField] float fallingVelocityTreshhold = 8.61f;
+        bool isFalling = false;
 
         [Header("Grounded settings")]
         [SerializeField] LayerMask groundedLayers;
         [SerializeField] Transform groundedCheckSource = null;
         [SerializeField] float groundedCheckDistance = 0.1f;
-        [SerializeField] bool grounded = true;  //TODO Remove exposure
+        bool grounded = true;
         
         //Input
         float InputX = 0.0f;
@@ -52,10 +52,9 @@ namespace CGJ.Movement
         float inputMagnitude;
         float inputMagnitudeClamped;
 
-        //Movement
+        //Movement values
         Vector3 movementDirection;
         Vector3 movement;
-        bool zMovementFrozen = true;
 
         //Rotation
         Vector3 camLookAtRotation;
@@ -92,8 +91,9 @@ namespace CGJ.Movement
         {
             UpdateAnimator();
             
-            if(controlsBlocked) { return; }
             ProcessMovementInput();
+
+            if(controlsBlocked) { return; }
 
             if(frozen) {return; }
             ProcessJump();
@@ -142,6 +142,20 @@ namespace CGJ.Movement
 #endregion
 
 #region Movement
+
+        //Animation events
+        public void FootL()
+        {
+            if(footstepSounds != null)
+            {
+                SystemManager.systems.soundManager.PlayRandomSound(footstepSounds, footstepsVolume);
+            }
+        }
+        public void FootR()
+        {
+            FootL();
+        }
+
         void ProcessMovementInput()
         {
             // Left and right movement
@@ -150,7 +164,7 @@ namespace CGJ.Movement
             // Depth movement
             if(lockVerticalMovement)
             {
-                InputZ = 0.0f;
+                if(InputZ != 0.0f) { InputZ = 0.0f; }
                 FreezeRigidbodyZMovement();
             }
             else

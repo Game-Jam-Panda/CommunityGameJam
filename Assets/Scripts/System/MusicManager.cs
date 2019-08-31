@@ -25,6 +25,9 @@ namespace CGJ.System
 
         public IEnumerator TriggerMusic(AudioClip musicClip)
         {
+            // Don't play triggered music if it's the same that's already playing
+            if(musicClip == musicAudioSource.clip) { yield break; }
+
             //Fade Out current music
             if(musicAudioSource.clip != null)
             {

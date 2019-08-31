@@ -43,8 +43,8 @@ namespace CGJ.Mechanics
 
         void Update()
         {
-            HandleBarVisibility();
             ProcessShieldFunctionnality();
+            HandleBarVisibility();
 
             if (Input.GetKeyDown(KeyCode.F)) { AddShield(1); }   //Simulate shield pickup //TODO REMOVE
         }
@@ -80,7 +80,7 @@ namespace CGJ.Mechanics
             else
             {
                 HideTimerBar();
-                HideShieldModel();
+                HideShieldModel(); 
             }
         }
 
@@ -105,17 +105,16 @@ namespace CGJ.Mechanics
         void UpdateShieldTimerText()
         {
             //Timer number
-            shieldTimerText.text = String.Format("{0:1}", shieldRemainingTime.ToString());
+            string remainingTime = String.Format("{0:0}", shieldRemainingTime.ToString("f1"));
+            shieldTimerText.text = remainingTime;
 
-            //TODO Fix
-            //Scale the bar depending on timer percentage
-            var shieldTimerScale = shieldTimerBar.transform.localScale;
-            shieldTimerScale.x = GetTimerPercentage();
+            //Fill the bar depending on timer percentage
+            shieldTimerBar.fillAmount = GetTimerPercentage();
         }
 
         private float GetTimerPercentage()
         {
-            return (shieldRemainingTime/shieldTemporaryTime) / 100;
+            return (shieldRemainingTime/shieldTemporaryTime);
         }
     #endregion
 

@@ -9,8 +9,12 @@ namespace CGJ.Characters
         [Header("Consume")]
         [SerializeField] GameObject consumeEffect = null;
         [SerializeField] AudioClip consumeSound = null;
-        [SerializeField] float secondsToDisappear = 1.0f;
+        [SerializeField] float secondsToDisappear = 2.0f;
         AudioSource audioSource = null;
+
+        //Animator
+        const string ANIM_DEAD = "dead";
+        Animator anim = null;
 
         [Header("Laugh")]
         [SerializeField] AudioClip[] evilLaughSounds = null;
@@ -22,6 +26,7 @@ namespace CGJ.Characters
         void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            anim = GetComponent<Animator>();
         }
 
         void Start()
@@ -40,9 +45,10 @@ namespace CGJ.Characters
 
         public IEnumerator Consume()
         {
+            anim.SetBool(ANIM_DEAD, true);
+
             //Spawn consume effect
             Instantiate(consumeEffect, transform.position, Quaternion.identity);
-
             //Play consume sound
             PlayConsumedSound();
 
@@ -53,11 +59,13 @@ namespace CGJ.Characters
 
         public IEnumerator ConsumeWithoutSound()
         {
+            // Wait for death time
+            yield return new WaitForSeconds(secondsToDisappear);
+
             //Spawn consume effect
             Instantiate(consumeEffect, transform.position, Quaternion.identity);
 
-            // Destroy the enemy after consume time
-            yield return new WaitForSeconds(secondsToDisappear);
+            //Destroy the enemy
             Destroy(gameObject);
         }
 

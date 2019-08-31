@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  showCheckpointMessage: 0
   lanternLight: {fileID: 0}
   checkpointUpdateSE: {fileID: 0}
+  checkpointUpdateVolume: 0.2
   respawnPoint: {fileID: 3842571990880525001}
 --- !u!1001 &5103273926167269034
 PrefabInstance:
@@ -57,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 3463129366563010778, guid: 910eb08304c384344a43160803995cf8,
         type: 3}
       propertyPath: m_Name
-      value: Checkpoint Invisible 1
+      value: Checkpoint Invisible
       objectReference: {fileID: 0}
     - target: {fileID: 6441581540984743800, guid: 910eb08304c384344a43160803995cf8,
         type: 3}

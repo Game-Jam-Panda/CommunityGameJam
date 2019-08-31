@@ -57,7 +57,8 @@ namespace CGJ.System
             voicelinesInQueue.Remove(firstVoicelineInQueue);
 
             //Wait for the voiceline length + delay between each voiceline
-            yield return new WaitForSeconds(firstVoicelineInQueue.length + minDelayBetweenVoicelines);
+            yield return new WaitForSeconds(firstVoicelineInQueue.length);
+            if(voicelinesInQueue.Count > 1) { yield return new WaitForSeconds(minDelayBetweenVoicelines); } //Additional delay
             
             //Able to play another voiceline again
             canPlayVoiceline = true;

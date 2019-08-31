@@ -8,9 +8,9 @@ namespace CGJ.Events
     public class Checkpoint : Trigger
     {
         [Header("Checkpoint Update")]
-        [SerializeField] bool showCheckpointMessage = true;
         [SerializeField] Light lanternLight = null;
         [SerializeField] AudioClip checkpointUpdateSE = null;
+        [Range(0.01f, 1.0f)] [SerializeField] float checkpointUpdateVolume = 0.1f;
 
         [Header("Respawn")]
         [SerializeField] Transform respawnPoint = null;
@@ -26,7 +26,7 @@ namespace CGJ.Events
                 SystemManager.systems.checkpointSystem.UpdateCheckpoint(this);
 
                 // Play checkpoint update Sound Effect
-                if (checkpointUpdateSE != null) { SystemManager.systems.soundManager.PlaySound(checkpointUpdateSE); }
+                if (checkpointUpdateSE != null) { SystemManager.systems.soundManager.PlaySound(checkpointUpdateSE, checkpointUpdateVolume); }
                 // Turn on checkpoint Light
                 if(lanternLight != null) { lanternLight.enabled = true; }
 

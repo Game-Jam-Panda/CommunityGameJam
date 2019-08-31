@@ -150,45 +150,51 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 3744600772136696646, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000002861
       objectReference: {fileID: 0}
-    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 3744600772136696646, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
+      propertyPath: m_SizeDelta.y
+      value: 17.13
       objectReference: {fileID: 0}
-    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 3744600772136696646, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -25
+      value: 20.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 3744600772136696646, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
-      propertyPath: m_Pivot.x
+      propertyPath: m_SizeDelta.x
+      value: 21.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8049718
+      objectReference: {fileID: 0}
+    - target: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+        type: 3}
+      propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1564528579404532746, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 90a1de70b3e467d4eb7d7f886891745d,
         type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+    - target: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
         type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7188722596194911155, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 0
+      propertyPath: m_Text
+      value: X1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3, type: 3}
@@ -252,9 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &264180704071339881 stripped
+--- !u!114 &984049436233993089 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+  m_CorrespondingSourceObject: {fileID: 656775724206869056, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
     type: 3}
   m_PrefabInstance: {fileID: 339280379885502913}
   m_PrefabAsset: {fileID: 0}
@@ -264,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &984049436233993089 stripped
+--- !u!114 &264180704071339881 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 656775724206869056, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
+  m_CorrespondingSourceObject: {fileID: 513361181838839464, guid: 7f888f6e988c3ad46bc32f60e7d6c2e3,
     type: 3}
   m_PrefabInstance: {fileID: 339280379885502913}
   m_PrefabAsset: {fileID: 0}

@@ -8,18 +8,16 @@ namespace CGJ.System
 {
     public class CGJEventsSystem: MonoBehaviour
     {
-        [SerializeField] GameObject checkpointNotificationPosition;
-
         //Enemies
         public void ConsumeDarkEnemy(DarkEnemy darkEnemy)
         {
-            darkEnemy.Consume();
+            darkEnemy.StartCoroutine(darkEnemy.Consume());
         }
         public void ConsumeDarkEnemies(List<DarkEnemy> darkEnemies)
         {
             foreach(DarkEnemy darkEnemy in darkEnemies)
             {
-                darkEnemy.Consume();
+                darkEnemy.StartCoroutine(darkEnemy.Consume());
             }
         }
         public void ConsumeAllDarkEnemies()
@@ -28,7 +26,7 @@ namespace CGJ.System
             
             foreach(DarkEnemy darkEnemy in darkEnemies)
             {
-                darkEnemy.ConsumeWithoutSound();
+                darkEnemy.StartCoroutine(darkEnemy.ConsumeWithoutSound());
             }
         }
     }

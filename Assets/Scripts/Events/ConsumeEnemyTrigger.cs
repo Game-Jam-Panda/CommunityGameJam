@@ -14,18 +14,19 @@ namespace CGJ.Events
 
         private void OnTriggerEnter(Collider col)
         {
-            if(col.tag != "Player") { return; }
-
-            if(consumeAllEnemies)
+            if(col.tag == "Player")
             {
-                SystemManager.systems.eventsSystem.ConsumeAllDarkEnemies();
-                return;
+                if(consumeAllEnemies)
+                {
+                    SystemManager.systems.eventsSystem.ConsumeAllDarkEnemies();
+                    return;
+                }
+                else
+                {
+                    if(enemiesToConsume.Count < 1) { return; }
+                    SystemManager.systems.eventsSystem.ConsumeDarkEnemies(enemiesToConsume);
+                }
             }
-            else
-            {
-                SystemManager.systems.eventsSystem.ConsumeDarkEnemies(enemiesToConsume);
-            }
-            
         }
     }
 }
