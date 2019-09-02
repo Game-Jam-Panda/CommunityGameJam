@@ -105,8 +105,8 @@ namespace CGJ.Movement
         {
             if(isFalling) { ProcessFalling(); }
 
-            if(controlsBlocked) { return; }
-            if(frozen) { return; }
+            if(controlsBlocked) { isMoving = false; return; }
+            if(frozen) { isMoving = false; return; }
 
             ProcessMovement();
         }

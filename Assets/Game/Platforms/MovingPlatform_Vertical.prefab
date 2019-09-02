@@ -45,6 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfc5c131eb75f4d8b959702c32b3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7295596295224007630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079684385714814365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a09e4be24ec734fa778f9b78ed7c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCycle: {fileID: 9143566034208123082}
+  movementSpeed: 2
+  stoppingDistance: 0.1
+  pauseTimeBetweenSteps: 0
 --- !u!1 &3501675483926198468
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,22 +121,6 @@ Transform:
   m_Father: {fileID: 6219901886903895424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7295596295224007630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079684385714814365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a09e4be24ec734fa778f9b78ed7c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathCycle: {fileID: 9143566034208123082}
-  movementSpeed: 2
-  stoppingDistance: 0.1
-  pauseTimeBetweenSteps: 0
 --- !u!1001 &7449222132718626205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,7 +131,12 @@ PrefabInstance:
     - target: {fileID: 1926087239477849065, guid: 1c0225b693a32d149b32a9c3f6445022,
         type: 3}
       propertyPath: m_Name
-      value: MovingPlatform_Vertica
+      value: MovingPlatform_Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926087239477849065, guid: 1c0225b693a32d149b32a9c3f6445022,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926087239477849066, guid: 1c0225b693a32d149b32a9c3f6445022,
         type: 3}
@@ -186,6 +191,11 @@ PrefabInstance:
     - target: {fileID: 1926087239477849066, guid: 1c0225b693a32d149b32a9c3f6445022,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609741096771049472, guid: 1c0225b693a32d149b32a9c3f6445022,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

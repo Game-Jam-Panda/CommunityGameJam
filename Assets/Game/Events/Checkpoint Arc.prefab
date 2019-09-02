@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2968232392405942776
 Transform:
@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3842571990880525001, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3063223368492446230, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41,
         type: 3}
       propertyPath: m_Size.x
@@ -122,11 +127,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 3.3277907
-      objectReference: {fileID: 0}
-    - target: {fileID: 3842571990880525001, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6273297212973485446, guid: d5c8d37ad2824d34e8f9f2f59c6d5d41,
         type: 3}
@@ -233,11 +233,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2923304955153806085, guid: 597bebfc000bd2247a34fc6429385570,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2923304955473297089, guid: 597bebfc000bd2247a34fc6429385570,
         type: 3}
       propertyPath: m_Enabled
@@ -252,6 +247,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923304955153806085, guid: 597bebfc000bd2247a34fc6429385570,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 597bebfc000bd2247a34fc6429385570, type: 3}

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3842571990880525001
 Transform:
@@ -58,6 +58,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Checkpoint Invisible
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463129366563010778, guid: 910eb08304c384344a43160803995cf8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441581540984743800, guid: 910eb08304c384344a43160803995cf8,
         type: 3}

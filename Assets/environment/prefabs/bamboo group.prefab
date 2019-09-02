@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5383496363463315319
 Transform:
@@ -56,6 +56,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -152,6 +157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -246,6 +256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -342,6 +357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (9)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -436,6 +456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -532,6 +557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (3)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -626,6 +656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -722,6 +757,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -816,6 +856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -912,6 +957,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (7)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1006,6 +1056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -1102,6 +1157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (14)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1196,6 +1256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
@@ -1292,6 +1357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bamboo (11)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1386,6 +1456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bamboo (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7809affa2c5aa8346a009bec0e917eec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7809affa2c5aa8346a009bec0e917eec,
         type: 3}

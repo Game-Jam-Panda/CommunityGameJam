@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire Ground Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 5730940179693534852, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5730940179693534971, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,6 +72,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686791767827501829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.69
+      objectReference: {fileID: 0}
     - target: {fileID: 8551027272439825593, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
       propertyPath: m_Size.y
@@ -83,30 +103,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f5f34974cc619e240b44c8c7d4952faf,
         type: 2}
-    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+    - target: {fileID: 5190388362137743340, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.64
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8829802727041301533, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+    - target: {fileID: 5190388362137743340, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6686791767827501829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.69
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2595054862009304829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5190388362137743340, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+    - target: {fileID: 2595054862009304829, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300256483002263965, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8701134767609473638, guid: ea1000a7ebf4c124f8495fe2ba2e4d29,
         type: 3}
