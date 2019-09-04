@@ -11,7 +11,6 @@ namespace CGJ.Traps
 
         public override void TriggerCollisionBehaviour(Vector3 contactPoint, Vector3 contactNormal)
         {
-            Debug.Log("Triggered Fire Trap Collision");
             SpawnParticleAtContactPoint(config.GetCollisionParticle(), contactPoint, contactNormal);
         }
     }
