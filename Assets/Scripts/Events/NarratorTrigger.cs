@@ -14,17 +14,17 @@ namespace CGJ.Events
         {
             if(col.tag == "Player")
             {
-                if(voicelineToTrigger == null) { Debug.LogError(gameObject + " isn't referencing any voiceline to trigger."); return;}
-
-                // Add voiceline to current voicelines queue
-                SystemManager.systems.narratorSystem.TriggerVoiceline(voicelineToTrigger);
-
-
-                //Disable this trigger's collider if enabled
+                //Disable this trigger's collider if one-time trigger
                 if(oneTimeTrigger)
                 {
                     triggerCollider.enabled = false;
                 }
+
+
+                if(voicelineToTrigger == null) { Debug.LogError(gameObject + " isn't referencing any voiceline to trigger."); return;}
+
+                // Add voiceline to current voicelines queue
+                SystemManager.systems.narratorSystem.TriggerVoiceline(voicelineToTrigger);
             }
         }
     }

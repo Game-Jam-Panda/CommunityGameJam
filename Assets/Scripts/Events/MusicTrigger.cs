@@ -15,17 +15,16 @@ namespace CGJ.Events
         {
             if(col.tag == "Player")
             {
-                if(musicToTrigger == null) { Debug.LogError(gameObject + " isn't referencing any music to trigger."); return;}
-
-                // Trigger music
-                SystemManager.systems.musicManager.StartCoroutine(SystemManager.systems.musicManager.TriggerMusic(musicToTrigger));
-
-
-                //Disable this trigger's collider if enabled
+                //Disable this trigger's collider if one-time trigger
                 if(oneTimeTrigger)
                 {
                     triggerCollider.enabled = false;
                 }
+
+
+                // Trigger music
+                if(musicToTrigger == null) { Debug.LogError(gameObject + " isn't referencing any music to trigger."); return;}
+                SystemManager.systems.musicManager.StartCoroutine(SystemManager.systems.musicManager.TriggerMusic(musicToTrigger));
             }
         }
     }

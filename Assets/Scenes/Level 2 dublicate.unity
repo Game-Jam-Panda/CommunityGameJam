@@ -3138,7 +3138,7 @@ PrefabInstance:
     - target: {fileID: 3416704166385361737, guid: ee904bfd0add1524e9443db3fde615f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2670101
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3416704166385361737, guid: ee904bfd0add1524e9443db3fde615f1,
         type: 3}
@@ -4457,6 +4457,11 @@ PrefabInstance:
     - target: {fileID: 145278831887966364, guid: 0e535bd2c5d544941aa84844f9a36ad1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 145278831010747413, guid: 0e535bd2c5d544941aa84844f9a36ad1,
+        type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -19757,6 +19762,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186802025470406544, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
+        type: 3}
+      propertyPath: groundedHeightOffset
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186802025470406544, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
+        type: 3}
+      propertyPath: groundedCheckDistance
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125321124867163836, guid: 61e29dd026a7e6b43a8b41900d5c3d5c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e29dd026a7e6b43a8b41900d5c3d5c, type: 3}

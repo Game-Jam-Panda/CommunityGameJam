@@ -15,6 +15,13 @@ namespace CGJ.Events
         {
             if(col.tag == "Player")
             {
+                //Disable this trigger's collider if one-time trigger
+                if(oneTimeTrigger)
+                {
+                    triggerCollider.enabled = false;
+                }
+
+
                 if(soundToTrigger == null) { Debug.LogError(gameObject + " isn't referencing any sound to trigger."); return;}
     
                 // Trigger sound, possibly after a delay
@@ -25,13 +32,6 @@ namespace CGJ.Events
                 else
                 {
                     TriggerSound();
-                }
-
-
-                //Disable this trigger's collider if enabled
-                if(oneTimeTrigger)
-                {
-                    triggerCollider.enabled = false;
                 }
             }
         }

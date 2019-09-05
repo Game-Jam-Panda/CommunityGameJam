@@ -16,6 +16,13 @@ namespace CGJ.Events
         {
             if(col.tag == "Player")
             {
+                //Disable this trigger's collider if one-time trigger
+                if(oneTimeTrigger)
+                {
+                    triggerCollider.enabled = false;
+                }
+
+
                 if(consumeAllEnemies)
                 {
                     SystemManager.systems.eventsSystem.ConsumeAllDarkEnemies();

@@ -29,6 +29,7 @@ namespace CGJ.Movement
         const string ANIM_MOVING = "moving";
         const string ANIM_GROUNDED = "grounded";
         const string ANIM_JUMP_TRIGGER = "jump";
+        const string ANIM_JUMPING = "jumping";
         const string ANIM_FALLING = "falling";
 
         [Header("Jump settings")]
@@ -38,12 +39,24 @@ namespace CGJ.Movement
         [SerializeField] float gravityMultiplier = 3.0f;
         [SerializeField] float fallingSpeedLimit = 8f;
         [SerializeField] float fallingVelocityTreshhold = 8.61f;
+        bool useGravity = false;
+        bool isJumping = false;
         bool isFalling = false;
 
         [Header("Grounded settings")]
         [SerializeField] LayerMask groundedLayers;
-        [SerializeField] Transform groundedCheckSource = null;
-        [SerializeField] float groundedCheckDistance = 0.1f;
+        [Range(0.01f, 1.0f)] [SerializeField] float groundedHeightOffset = 0.05f;
+        [SerializeField] float groundedRadiusOffset = 0.1f;
+        [Range(0.05f, 1.0f)] [SerializeField] float groundedCheckDistance = 0.15f;
+        [SerializeField] Transform groundedCenterChecksource = null;
+        [SerializeField] Transform groundedBehindChecksource = null;
+        [SerializeField] Transform groundedFrontChecksource = null;
+        Vector3 groundedCenterPosition;
+        Vector3 groundedBehindPosition;
+        Vector3 groundedFrontPosition;
+        bool groundedCenter = true;
+        bool groundedBehind = true;
+        bool groundedFront = true;
         bool grounded = true;
 
         // [Header("Landing settings")]
@@ -64,7 +77,7 @@ namespace CGJ.Movement
 
         //References
         Rigidbody rb;
-        CapsuleCollider col;
+        BoxCollider col;
         Camera cam;
         HealthSystem characterHealth;
 
@@ -84,31 +97,50 @@ namespace CGJ.Movement
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            col = GetComponent<CapsuleCollider>();
+            col = GetComponent<BoxCollider>();
             characterHealth = GetComponent<HealthSystem>();
             anim = GetComponent<Animator>();
             cam = Camera.main;
         }
+        void Start()
+        {
+            UpdateGroundedChecksourcesPositions();
+        }
 
         void Update()
         {
+            //Animator
             UpdateAnimator();
             
+            //Input
             ProcessMovementInput();
 
-            if(controlsBlocked) { return; }
+            //Checks
+            ProcessGroundedCheck();
+            ProcessFallingCheck();
 
+            if(controlsBlocked) { return; }
             if(frozen) {return; }
+            
+            //Mechanics
             ProcessJump();
         }
         void FixedUpdate()
         {
-            if(isFalling) { ProcessFalling(); }
+            if(useGravity) { ProcessFallingGravity(); }
 
             if(controlsBlocked) { isMoving = false; return; }
             if(frozen) { isMoving = false; return; }
 
+            //Mechanics
             ProcessMovement();
+        }
+
+        void UpdateGroundedChecksourcesPositions()
+        {
+            groundedCenterChecksource.localPosition = new Vector3(0, groundedHeightOffset, 0);
+            groundedBehindChecksource.localPosition = new Vector3(0, groundedHeightOffset, -(col.size.z/2 + groundedRadiusOffset));
+            groundedFrontChecksource.localPosition = new Vector3(0, groundedHeightOffset, col.size.z/2 + groundedRadiusOffset);
         }
 
 #region Animator
@@ -117,8 +149,9 @@ namespace CGJ.Movement
     {
         anim.SetFloat(ANIM_FORWARD, inputMagnitudeClamped);
         anim.SetBool(ANIM_MOVING, isMoving);
-        anim.SetBool(ANIM_GROUNDED, grounded);
+        anim.SetBool(ANIM_GROUNDED, groundedCenter);
         anim.SetBool(ANIM_FALLING, isFalling);
+        anim.SetBool(ANIM_JUMPING, isJumping);
     }
 #endregion
 
@@ -252,11 +285,10 @@ namespace CGJ.Movement
 #endregion
 
 #region Jump mechanic
+
+        //*** JUMP ***
         void ProcessJump()
         {
-            // Grounded check
-            grounded = Physics.Raycast(groundedCheckSource.position, Vector3.down, groundedCheckDistance, groundedLayers);
-
             //Jump mechanic
             if(grounded && Input.GetKeyDown(KeyCode.Space))
             {
@@ -267,22 +299,15 @@ namespace CGJ.Movement
                 anim.SetTrigger(ANIM_JUMP_TRIGGER);
                 Jump();
             }
-
-            //Gravity falling effect while in the air
-            if(!grounded && !Mathf.Approximately(rb.velocity.y, 0) && rb.velocity.y < fallingVelocityTreshhold)
-            {
-                isFalling = true;
-            }
-            else
-            {
-                isFalling = false;
-            }
         }
-
-        void ProcessFalling()
+        void ProcessGroundedCheck()
         {
-            if(rb.velocity.y < -fallingSpeedLimit) { return; }
-            rb.AddForce(Vector3.down * gravityMultiplier * 100 * Time.deltaTime, ForceMode.Acceleration);
+            // Grounded check
+            groundedCenter = Physics.Raycast(groundedCenterChecksource.position, Vector3.down, groundedCheckDistance, groundedLayers);
+            groundedBehind = Physics.Raycast(groundedBehindChecksource.position, Vector3.down, groundedCheckDistance, groundedLayers);
+            groundedFront = Physics.Raycast(groundedFrontChecksource.position, Vector3.down, groundedCheckDistance, groundedLayers);
+            // Being grounded means there's a least one "grounded-check Source" that's grounded
+            grounded = groundedFront || groundedBehind || groundedCenter;
         }
 
         void Jump()
@@ -299,12 +324,55 @@ namespace CGJ.Movement
             var randomJumpSound = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)];
             GetComponent<AudioSource>().PlayOneShot(randomJumpSound);
         }
+
+        //*** FALLING ***
+        void ProcessFallingGravity()
+        {
+            //Gravity falling effect while in the air
+            if(rb.velocity.y < -fallingSpeedLimit) { return; }
+            rb.AddForce(Vector3.down * gravityMultiplier * 100 * Time.deltaTime, ForceMode.Acceleration);
+        }
+        void ProcessFallingCheck()
+        {
+            bool isPhysicallyJumping = rb.velocity.y > 0.0f;
+            bool isPhysicallyFalling = rb.velocity.y < 0.0f;
+
+            //Physically falling
+            if(!grounded && isPhysicallyFalling)
+            {
+                isFalling = true;
+            }
+            else
+            {
+                isFalling = false;
+            }
+
+            //In the air
+            if(!grounded && isPhysicallyJumping)
+            {
+                isJumping = true;
+            }
+            else
+            {
+                isJumping = false;
+            }
+
+            //Use gravity effect
+            if(!grounded && rb.velocity.y < fallingVelocityTreshhold)
+            {
+                useGravity = true;
+            }
+            else
+            {
+                useGravity = false;
+            }
+        }
 #endregion
 
 #region Public Utils
         public Vector3 GetColliderCenterPosition()
         {
-            float colHalfHeight = (col.height / 2.0f);
+            float colHalfHeight = (col.size.y / 2.0f);
             return new Vector3(transform.position.x, colHalfHeight, transform.position.z);
         }
 #endregion
@@ -315,8 +383,17 @@ namespace CGJ.Movement
         void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(groundedCheckSource.position,
-                new Vector3(groundedCheckSource.position.x, groundedCheckSource.position.y - groundedCheckDistance, groundedCheckSource.position.z)
+            //Center grounded-check source
+            Gizmos.DrawLine(groundedCenterChecksource.position,
+                new Vector3(groundedCenterChecksource.position.x, groundedCenterChecksource.position.y - groundedCheckDistance, groundedCenterChecksource.position.z)
+            );
+            //Behind grounded-check source
+            Gizmos.DrawLine(groundedBehindChecksource.position,
+                new Vector3(groundedBehindChecksource.position.x, groundedBehindChecksource.position.y - groundedCheckDistance, groundedBehindChecksource.position.z)
+            );
+            //Front grounded-check source
+            Gizmos.DrawLine(groundedFrontChecksource.position,
+                new Vector3(groundedFrontChecksource.position.x, groundedFrontChecksource.position.y - groundedCheckDistance, groundedFrontChecksource.position.z)
             );
         }
 #endregion

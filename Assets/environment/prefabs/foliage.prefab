@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4223440970446614382}
   - component: {fileID: 4223440970446614368}
   - component: {fileID: 4223440970446614369}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: foliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
